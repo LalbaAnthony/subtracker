@@ -3,6 +3,7 @@ export interface Subscription {
     name: string;
     price: number;
     frequency: string;
+    payment: string;
     type: string;
     nextBilling: Date;
     category?: string;
@@ -13,6 +14,7 @@ export interface SubscriptionCreation {
     name: string;
     price: number;
     frequency: string;
+    payment: string;
     type: string;
     nextBilling: Date;
     category?: string;

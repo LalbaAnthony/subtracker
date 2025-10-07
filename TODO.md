@@ -1,12 +1,12 @@
 - [x] Layout
+- [x] Formulaire d'ajout : Créer un nouvel item
 - [ ] Dahsboard
-- [ ] Bouton désactiver dans la liste
+- [ ] Make everything fit the current notion version of the app (moyen de paiment, ...)
 - [ ] Liste avec pagination 
-- [ ] Make everything fit the current notion version of the app
+- [ ] Sort and filter (the next payments first, ...)
 - [ ] Page individuelle (/subs/[id])
-- [ ] Formulaire d'ajout : Créer un nouvel item
 - [ ] Favoris
 - [ ] Server Components vs Client Components
 - [ ] Authentification basique
 - [ ] Host avec vercel (passer BDD en PG avant ?)
-- [ ] Check condigne un derniere fois avant de soumettre
+- [ ] Check consigne un derniere fois avant de soumettre

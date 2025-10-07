@@ -17,7 +17,8 @@ model Subscription {
   id          Int      @id @default(autoincrement())
   name        String
   price       Float
-  frequency   String   // monthly, yearly, weekly
+  frequency   String
+  payment   String
   nextBilling DateTime
   category    String?
   type        String

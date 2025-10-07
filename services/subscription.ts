@@ -6,6 +6,7 @@ class SubscriptionService {
             name: "",
             price: 0,
             frequency: "monthly",
+            payment: "card",
             type: "auto",
             nextBilling: new Date(),
             category: "",

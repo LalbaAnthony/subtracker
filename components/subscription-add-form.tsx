@@ -15,6 +15,7 @@ import { Plus } from "lucide-react";
 import { subscriptionService } from "@/services/subscription";
 import { types } from "@/services/type";
 import { frequencies } from "@/services/frequency";
+import { payments } from "@/services/payments";
 
 export default function SubscriptionAddForm() {
   const [form, setForm] = useState(subscriptionService.default());
@@ -77,6 +78,27 @@ export default function SubscriptionAddForm() {
             </SelectContent>
           </Select>
         </div>
+      </div>
+
+      <div className="flex-1">
+        <Label htmlFor="payment" className="mb-1">
+          Moyen de paiement
+        </Label>
+        <Select
+          value={form.payment}
+          onValueChange={(v) => setForm({ ...form, payment: v })}
+        >
+          <SelectTrigger id="payment" className="w-full">
+            <SelectValue />
+          </SelectTrigger>
+          <SelectContent>
+            {Object.entries(payments).map(([key, object]) => (
+              <SelectItem key={key} value={key}>
+                {object.name}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
       </div>
 
       <div className="flex gap-x-4">
