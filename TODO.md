@@ -2,6 +2,7 @@
 - [x] Formulaire d'ajout : Créer un nouvel item
 - [x] Dahsboard
 - [ ] Make the list a component
+- [ ] Replace the dashboard values by a dedicated enpoint (to avoid fecthing subs multiple times)
 - [ ] Make the dashboard reload when a new item is added from the dashboard
 - [ ] Limit the dashboard list to the next 5 payments
 - [ ] Liste avec pagination

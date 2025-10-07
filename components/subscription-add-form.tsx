@@ -17,13 +17,18 @@ import { types } from "@/services/type";
 import { frequencies } from "@/services/frequency";
 import { payments } from "@/services/payments";
 
-export default function SubscriptionAddForm() {
+export default function SubscriptionAddForm({
+  askRefresh,
+}: {
+  askRefresh: () => void;
+}) {
   const [form, setForm] = useState(subscriptionService.default());
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     await subscriptionService.create(form);
     setForm(subscriptionService.default());
+    askRefresh();
   };
 
   return (

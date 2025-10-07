@@ -11,6 +11,11 @@ export const items: {
   description: string;
 }[] = [
   {
+    title: "Tout les abonnements",
+    href: "/list",
+    description: "",
+  },
+  {
     title: "Mon profil",
     href: "/profile",
     description: "",
