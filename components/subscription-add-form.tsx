@@ -82,7 +82,7 @@ export default function SubscriptionAddForm() {
 
       <div className="flex-1">
         <Label htmlFor="payment" className="mb-1">
-          Moyen de paiement
+          Paiement
         </Label>
         <Select
           value={form.payment}

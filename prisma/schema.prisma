@@ -18,7 +18,7 @@ model Subscription {
   name        String
   price       Float
   frequency   String
-  payment   String
+  payment     String
   nextBilling DateTime
   category    String?
   type        String

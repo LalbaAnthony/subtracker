@@ -22,6 +22,7 @@ import { Subscription } from "@/types/Subscription";
 import { subscriptionService } from "@/services/subscription";
 import { types } from "@/services/type";
 import { frequencies } from "@/services/frequency";
+import { payments } from "@/services/payments";
 import SubscriptionAddForm from "@/components/subscription-add-form";
 import Link from "next/link";
 
@@ -154,6 +155,9 @@ export default function Page() {
                       Type
                     </th>
                     <th className="px-4 py-3 text-left text-sm font-medium">
+                      Paiment
+                    </th>
+                    <th className="px-4 py-3 text-left text-sm font-medium">
                       Prix
                     </th>
                     <th className="px-4 py-3 text-left text-sm font-medium">
@@ -179,6 +183,15 @@ export default function Page() {
                           }`}
                         >
                           {types[sub.type].name}
+                        </span>
+                      </td>
+                      <td className="px-4 py-3">
+                        <span
+                          className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
+                            payments[sub.payment].class
+                          }`}
+                        >
+                          {payments[sub.payment].name}
                         </span>
                       </td>
                       <td className="px-4 py-3">{sub.price} €</td>
@@ -269,6 +282,18 @@ export default function Page() {
                         }`}
                       >
                         {types[sub.type].name}
+                      </span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-muted-foreground">
+                        Paiment:
+                      </span>
+                      <span
+                        className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
+                          payments[sub.payment].class
+                        }`}
+                      >
+                        {payments[sub.payment].name}
                       </span>
                     </div>
                     <div className="flex justify-between">

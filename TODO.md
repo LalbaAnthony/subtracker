@@ -1,8 +1,10 @@
 - [x] Layout
 - [x] Formulaire d'ajout : Créer un nouvel item
-- [ ] Dahsboard
-- [ ] Make everything fit the current notion version of the app (moyen de paiment, ...)
-- [ ] Liste avec pagination 
+- [x] Dahsboard
+- [ ] Make the list a component
+- [ ] Make the dashboard reload when a new item is added from the dashboard
+- [ ] Limit the dashboard list to the next 5 payments
+- [ ] Liste avec pagination
 - [ ] Sort and filter (the next payments first, ...)
 - [ ] Page individuelle (/subs/[id])
 - [ ] Favoris
