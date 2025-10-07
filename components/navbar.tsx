@@ -28,7 +28,6 @@ export const items: {
 ];
 
 export default function Navbar() {
-  // The function name should match the file name
   return (
     <nav>
       <NavigationMenu viewport={false}>

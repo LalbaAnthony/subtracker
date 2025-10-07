@@ -20,54 +20,38 @@ import {
 } from "@/components/ui/select";
 import { Plus, Trash2, Calendar, TrendingUp, Pen } from "lucide-react";
 import { Subscription } from "@/types/Subscription";
+import {
+  defaultSubscription,
+  createSubscription,
+  deleteSubscription,
+  fetchSubscriptions,
+  types,
+  frequencies,
+} from "@/services/subscription";
 
 export default function Page() {
   const [subscriptions, setSubscriptions] = useState<Subscription[]>([]);
-  const [form, setForm] = useState({
-    name: "",
-    price: "",
-    frequency: "monthly",
-    type: "auto",
-    nextBilling: "",
-    category: "",
-  });
+  const [form, setForm] = useState(defaultSubscription);
 
-  const fetchSubscriptions = async () => {
-    const res = await fetch("/api/subscriptions");
-    const data = await res.json();
+  useEffect(() => {
+    reloadData();
+  }, []);
+
+  const reloadData = async () => {
+    const data = await fetchSubscriptions();
     setSubscriptions(data);
   };
 
-  useEffect(() => {
-    fetchSubscriptions();
-  }, []);
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    await fetch("/api/subscriptions", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        ...form,
-        price: parseFloat(form.price),
-        nextBilling: new Date(form.nextBilling),
-        active: true,
-      }),
-    });
-    fetchSubscriptions();
-    setForm({
-      name: "",
-      price: "",
-      frequency: "monthly",
-      type: "auto",
-      nextBilling: "",
-      category: "",
-    });
+    await createSubscription(form);
+    reloadData();
+    setForm(defaultSubscription);
   };
 
   const handleDelete = async (id: number) => {
-    await fetch(`/api/subscriptions/${id}`, { method: "DELETE" });
-    fetchSubscriptions();
+    await deleteSubscription(id);
+    reloadData();
   };
 
   const totalMonthly = subscriptions
@@ -82,20 +66,9 @@ export default function Page() {
       return acc + monthly;
     }, 0);
 
-  const frequencyLabels: Record<string, string> = {
-    monthly: "Mensuel",
-    yearly: "Annuel",
-    weekly: "Hebdomadaire",
-  };
-
-  const typeLabels: Record<string, string> = {
-    auto: "Automatique",
-    manual: "Manuel",
-  };
-
   return (
     <div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between pb-2">
             <CardTitle className="text-sm font-medium">Total Mensuel</CardTitle>
@@ -176,7 +149,7 @@ export default function Page() {
                     step="0.01"
                     value={form.price}
                     onChange={(e) =>
-                      setForm({ ...form, price: e.target.value })
+                      setForm({ ...form, price: parseInt(e.target.value) })
                     }
                     placeholder="9.99"
                     required
@@ -194,9 +167,9 @@ export default function Page() {
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
-                    {Object.entries(frequencyLabels).map(([value, label]) => (
-                      <SelectItem key={value} value={value}>
-                        {label}
+                    {Object.entries(frequencies).map(([key, object]) => (
+                      <SelectItem key={key} value={key}>
+                        {object.name}
                       </SelectItem>
                     ))}
                   </SelectContent>
@@ -213,9 +186,9 @@ export default function Page() {
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
-                    {Object.entries(typeLabels).map(([value, label]) => (
-                      <SelectItem key={value} value={value}>
-                        {label}
+                    {Object.entries(types).map(([key, object]) => (
+                      <SelectItem key={key} value={key}>
+                        {object.name}
                       </SelectItem>
                     ))}
                   </SelectContent>
@@ -227,9 +200,9 @@ export default function Page() {
                 <Input
                   id="nextBilling"
                   type="date"
-                  value={form.nextBilling}
+                  value={form.nextBilling.toISOString().split("T")[0]}
                   onChange={(e) =>
-                    setForm({ ...form, nextBilling: e.target.value })
+                    setForm({ ...form, nextBilling: new Date(e.target.value) })
                   }
                   required
                 />
@@ -293,14 +266,26 @@ export default function Page() {
                       <td className="px-4 py-3 font-medium">{sub.name}</td>
                       <td className="px-4 py-3">{sub.category || "-"}</td>
                       <td className="px-4 py-3">
-                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
-                          {typeLabels[sub.type]}
+                        <span
+                          className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium`}
+                          style={{
+                            backgroundColor: types[sub.type].color,
+                            color: "#fff",
+                          }}
+                        >
+                          {types[sub.type].name}
                         </span>
                       </td>
                       <td className="px-4 py-3">{sub.price} €</td>
                       <td className="px-4 py-3">
-                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
-                          {frequencyLabels[sub.frequency]}
+                        <span
+                          className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium`}
+                          style={{
+                            backgroundColor: types[sub.type].color,
+                            color: "#fff",
+                          }}
+                        >
+                          {frequencies[sub.frequency].name}
                         </span>
                       </td>
                       <td className="px-4 py-3">
@@ -356,7 +341,7 @@ export default function Page() {
                     <div className="flex justify-between">
                       <span className="text-muted-foreground">Fréquence:</span>
                       <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
-                        {frequencyLabels[sub.frequency]}
+                        {frequencies[sub.frequency].name}
                       </span>
                     </div>
                     <div className="flex justify-between">
