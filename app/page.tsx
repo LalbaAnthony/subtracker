@@ -19,17 +19,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Plus, Trash2, Calendar, TrendingUp, Pen } from "lucide-react";
-
-interface Subscription {
-  id: number;
-  name: string;
-  price: number;
-  frequency: string;
-  type: string;
-  nextBilling: string;
-  category?: string;
-  active: boolean;
-}
+import { Subscription } from "@/types/Subscription";
 
 export default function Page() {
   const [subscriptions, setSubscriptions] = useState<Subscription[]>([]);
