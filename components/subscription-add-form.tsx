@@ -18,9 +18,9 @@ import { frequencies } from "@/services/frequency";
 import { payments } from "@/services/payments";
 
 export default function SubscriptionAddForm({
-  askRefresh,
+  asksReload,
 }: {
-  askRefresh: () => void;
+  asksReload: () => void;
 }) {
   const [form, setForm] = useState(subscriptionService.default());
 
@@ -28,7 +28,7 @@ export default function SubscriptionAddForm({
     e.preventDefault();
     await subscriptionService.create(form);
     setForm(subscriptionService.default());
-    askRefresh();
+    asksReload();
   };
 
   return (

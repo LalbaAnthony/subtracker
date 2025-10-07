@@ -111,7 +111,7 @@ export default function Page() {
         </Card>
 
         <Card className="lg:col-span-2">
-          <CardHeader className="flex flex-row items-center justify-between pb-2">
+          <CardHeader className="flex flex-row items-center justify-between">
             <CardTitle className="text-sm font-medium">Abonnements</CardTitle>
             <Link href="/subscriptions">
               <Button variant="ghost" size="icon">
