@@ -1,4 +1,4 @@
-import { Payment } from "@/types/Payment";
+import { Payment } from "@/types/payment";
 
 export const payments: Record<string, Payment> = {
     card: { name: "Carte Bancaire", class: "bg-blue-100 text-blue-800" },
