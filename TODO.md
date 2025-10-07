@@ -1,5 +1,6 @@
 - [x] Layout
 - [ ] Dahsboard
+- [ ] Bouton désactiver dans la liste
 - [ ] Liste avec pagination 
 - [ ] Make everything fit the current notion version of the app
 - [ ] Page individuelle (/subs/[id])

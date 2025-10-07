@@ -1,14 +1,3 @@
-export type color = `#${string}`;
-
-export interface Type {
-    name: string;
-    color: color;
-}
-export interface Frequency {
-    name: string;
-    color: color;
-}
-
 export interface Subscription {
     id: number;
     name: string;
