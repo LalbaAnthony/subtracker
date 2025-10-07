@@ -2,13 +2,13 @@
 - [x] Formulaire d'ajout : Créer un nouvel item
 - [x] Dahsboard
 - [ ] Make the list a component
+- [ ] Add loaders
 - [ ] Replace the dashboard values by a dedicated enpoint (to avoid fecthing subs multiple times)
 - [ ] Make the dashboard reload when a new item is added from the dashboard
 - [ ] Limit the dashboard list to the next 5 payments
 - [ ] Liste avec pagination
 - [ ] Sort and filter (the next payments first, ...)
 - [ ] Page individuelle (/subs/[id])
-- [ ] Favoris
 - [ ] Server Components vs Client Components
 - [ ] Authentification basique
 - [ ] Host avec vercel (passer BDD en PG avant ?)
