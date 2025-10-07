@@ -1,11 +1,11 @@
 - [x] Layout
 - [ ] Dahsboard
-- [ ] Liste
-- [ ] Page individuelle
-- [ ] Formulaire d'ajout : Créer une nouvelle recette
+- [ ] Liste avec pagination 
+- [ ] Make everything fit the current notion version of the app
+- [ ] Page individuelle (/subs/[id])
+- [ ] Formulaire d'ajout : Créer un nouvel item
 - [ ] Favoris
-- [ ] Routing dynamique (/subs/[id])
 - [ ] Server Components vs Client Components
-- [ ] Formulaires et Server Actions
 - [ ] Authentification basique
-- [ ] Pagination 
+- [ ] Host avec vercel (passer BDD en PG avant ?)
+- [ ] Check condigne un derniere fois avant de soumettre

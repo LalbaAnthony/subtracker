@@ -24,8 +24,8 @@ interface Subscription {
   id: number;
   name: string;
   price: number;
-  currency: string;
   frequency: string;
+  type: string;
   nextBilling: string;
   category?: string;
   active: boolean;
@@ -36,8 +36,8 @@ export default function Page() {
   const [form, setForm] = useState({
     name: "",
     price: "",
-    currency: "EUR",
     frequency: "monthly",
+    type: "auto",
     nextBilling: "",
     category: "",
   });
@@ -68,8 +68,8 @@ export default function Page() {
     setForm({
       name: "",
       price: "",
-      currency: "EUR",
       frequency: "monthly",
+      type: "auto",
       nextBilling: "",
       category: "",
     });
@@ -96,6 +96,11 @@ export default function Page() {
     monthly: "Mensuel",
     yearly: "Annuel",
     weekly: "Hebdomadaire",
+  };
+
+  const typeLabels: Record<string, string> = {
+    auto: "Automatique",
+    manual: "Manuel",
   };
 
   return (
@@ -138,6 +143,20 @@ export default function Page() {
             </div>
           </CardContent>
         </Card>
+
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between pb-2">
+            <CardTitle className="text-sm font-medium">
+              Abonnements Inactifs
+            </CardTitle>
+            <div className="w-4 h-4 bg-red-500 rounded-full" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">
+              {subscriptions.filter((s) => !s.active).length}
+            </div>
+          </CardContent>
+        </Card>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -173,22 +192,6 @@ export default function Page() {
                     required
                   />
                 </div>
-                <div>
-                  <Label htmlFor="currency">Devise</Label>
-                  <Select
-                    value={form.currency}
-                    onValueChange={(v) => setForm({ ...form, currency: v })}
-                  >
-                    <SelectTrigger id="currency">
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="EUR">EUR</SelectItem>
-                      <SelectItem value="USD">USD</SelectItem>
-                      <SelectItem value="GBP">GBP</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
               </div>
 
               <div>
@@ -201,9 +204,30 @@ export default function Page() {
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="monthly">Mensuel</SelectItem>
-                    <SelectItem value="yearly">Annuel</SelectItem>
-                    <SelectItem value="weekly">Hebdomadaire</SelectItem>
+                    {Object.entries(frequencyLabels).map(([value, label]) => (
+                      <SelectItem key={value} value={value}>
+                        {label}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div>
+                <Label htmlFor="type">Type</Label>
+                <Select
+                  value={form.type}
+                  onValueChange={(v) => setForm({ ...form, type: v })}
+                >
+                  <SelectTrigger id="type">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {Object.entries(typeLabels).map(([value, label]) => (
+                      <SelectItem key={value} value={value}>
+                        {label}
+                      </SelectItem>
+                    ))}
                   </SelectContent>
                 </Select>
               </div>
@@ -254,6 +278,12 @@ export default function Page() {
                       Nom
                     </th>
                     <th className="px-4 py-3 text-left text-sm font-medium">
+                      Catégorie
+                    </th>
+                    <th className="px-4 py-3 text-left text-sm font-medium">
+                      Type
+                    </th>
+                    <th className="px-4 py-3 text-left text-sm font-medium">
                       Prix
                     </th>
                     <th className="px-4 py-3 text-left text-sm font-medium">
@@ -261,9 +291,6 @@ export default function Page() {
                     </th>
                     <th className="px-4 py-3 text-left text-sm font-medium">
                       Prochain paiement
-                    </th>
-                    <th className="px-4 py-3 text-left text-sm font-medium">
-                      Catégorie
                     </th>
                     <th className="px-4 py-3 text-right text-sm font-medium">
                       &nbsp;
@@ -274,9 +301,13 @@ export default function Page() {
                   {subscriptions.map((sub) => (
                     <tr key={sub.id} className="hover:bg-muted/50">
                       <td className="px-4 py-3 font-medium">{sub.name}</td>
+                      <td className="px-4 py-3">{sub.category || "-"}</td>
                       <td className="px-4 py-3">
-                        {sub.price} {sub.currency}
+                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                          {typeLabels[sub.type]}
+                        </span>
                       </td>
+                      <td className="px-4 py-3">{sub.price} €</td>
                       <td className="px-4 py-3">
                         <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
                           {frequencyLabels[sub.frequency]}
@@ -285,7 +316,6 @@ export default function Page() {
                       <td className="px-4 py-3">
                         {new Date(sub.nextBilling).toLocaleDateString("fr-FR")}
                       </td>
-                      <td className="px-4 py-3">{sub.category || "-"}</td>
                       <td className="px-4 py-3 text-right">
                         <Button
                           variant="ghost"
@@ -331,9 +361,7 @@ export default function Page() {
                   <CardContent className="space-y-2 text-sm">
                     <div className="flex justify-between">
                       <span className="text-muted-foreground">Prix:</span>
-                      <span className="font-medium">
-                        {sub.price} {sub.currency}
-                      </span>
+                      <span className="font-medium">{sub.price} €</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-muted-foreground">Fréquence:</span>

@@ -35,7 +35,7 @@ export default function Navbar() {
         <NavigationMenuList>
           {items.map((item) => (
             <li key={item.href}>
-              <NavigationMenuLink>
+              <NavigationMenuLink asChild>
                 <Link href={item.href}>
                   <div className="text-sm leading-none font-medium">
                     {item.title}
