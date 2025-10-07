@@ -1,0 +1,11 @@
+- [x] Layout
+- [ ] Dahsboard
+- [ ] Liste
+- [ ] Page individuelle
+- [ ] Formulaire d'ajout : Créer une nouvelle recette
+- [ ] Favoris
+- [ ] Routing dynamique (/subs/[id])
+- [ ] Server Components vs Client Components
+- [ ] Formulaires et Server Actions
+- [ ] Authentification basique
+- [ ] Pagination 
