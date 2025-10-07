@@ -7,6 +7,9 @@ export async function PUT(
     { params }: { params: { id: string } }
 ) {
     const data = await request.json();
+
+    data.updatedAt = new Date();
+
     const subscription = await prisma.subscription.update({
         where: { id: parseInt(params.id) },
         data
