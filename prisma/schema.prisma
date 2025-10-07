@@ -13,19 +13,15 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id    Int    @id @default(autoincrement())
-  name  String
-  email String @unique
-  posts Post[]
+model Subscription {
+  id          Int      @id @default(autoincrement())
+  name        String
+  price       Float
+  currency    String   @default("EUR")
+  frequency   String   // monthly, yearly, weekly
+  nextBilling DateTime
+  category    String?
+  active      Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
-
-model Post {
-  id        Int      @id @default(autoincrement())
-  title     String
-  content   String?
-  published Boolean  @default(false)
-  authorId  Int?
-  author    User?    @relation(fields: [authorId], references: [id])
-}
-
