@@ -1,6 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
-interface props {
+interface Props {
   title: string;
   value: string | number;
   iconNode: React.ReactNode;
@@ -12,7 +12,7 @@ export default function DashboardStat({
   value,
   iconNode,
   iconClass,
-}: props) {
+}: Props) {
   return (
     <div>
       {/* DESKTOP */}

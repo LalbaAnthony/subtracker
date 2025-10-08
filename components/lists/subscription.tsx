@@ -15,17 +15,19 @@ import { Frequency } from "@/types/frequency";
 import { Type } from "@/types/type";
 import { subscriptionApi } from "@/api/subscription.api";
 
+interface Props {
+  subscriptions: Subscription[];
+  types: Type[];
+  frequencies: Frequency[];
+  payments: Payment[];
+}
+
 export default function SubscriptionList({
   subscriptions,
   types,
   frequencies,
   payments,
-}: {
-  subscriptions: Subscription[];
-  types: Type[];
-  frequencies: Frequency[];
-  payments: Payment[];
-}) {
+}: Props) {
   const handleUpdate = (id: number) => {
     window.location.href = `/subscriptions/${id}`;
   };

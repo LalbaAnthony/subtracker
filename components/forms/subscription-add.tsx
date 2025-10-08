@@ -17,15 +17,17 @@ import { Payment } from "@/types/payment";
 import { Frequency } from "@/types/frequency";
 import { Type } from "@/types/type";
 
+interface Props {
+  types: Type[];
+  frequencies: Frequency[];
+  payments: Payment[];
+}
+
 export default function SubscriptionAddForm({
   types,
   frequencies,
   payments,
-}: {
-  types: Type[];
-  frequencies: Frequency[];
-  payments: Payment[];
-}) {
+}: Props) {
   const [form, setForm] = useState(subscriptionApi.default);
 
   const handleSubmit = async (e: React.FormEvent) => {
