@@ -11,7 +11,7 @@ export async function GET(request: Request) {
         return NextResponse.json({ error: 'Could not process request' + error }, { status: 500 });
     }
 
-    status = subscriptions.length > 0 ? 200 : 204;
+    status = 200;
 
     return NextResponse.json(subscriptions, { status });
 }

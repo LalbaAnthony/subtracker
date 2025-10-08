@@ -6,7 +6,8 @@ class DashboardApi {
             monthly: 0,
             yearly: 0,
             actives: 0,
-            inactives: 0
+            inactives: 0,
+            nextBilling: null,
         };
     }
 

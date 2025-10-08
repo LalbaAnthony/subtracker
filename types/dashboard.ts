@@ -3,4 +3,5 @@ export interface Dashboard {
     yearly: number;
     actives: number;
     inactives: number;
+    nextBilling?: Date | null;
 }

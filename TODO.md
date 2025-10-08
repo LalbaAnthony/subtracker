@@ -7,10 +7,10 @@
 - [x] Déplacer le statique de type, frequence, type dans services
 - [x] Faire des tableau pour statiques
 - [x] Remettre les statiques dans list
-- [ ] Make the dashboard reload when a new item is added from the dashboard
-- [ ] Add loaders
-- [ ] Liste avec pagination
+- [x] Make the dashboard reload when a new item is added from the dashboard
+- [x] Add loaders
 - [ ] Limit the dashboard list to the next 5 payments
+- [ ] Liste avec pagination
 - [ ] Sort and filter (the next payments first, ...)
 - [ ] Make category a table etc
 - [ ] Server Components vs Client Components
@@ -18,3 +18,4 @@
 - [ ] Host avec vercel (passer BDD en PG avant ?)
 - [ ] Faire readme complet
 - [ ] Check consigne un derniere fois avant de soumettre
+- [ ] Faire un cron pour actualiser nextBilling (le faire tourner tout les matins ?)

@@ -11,7 +11,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { History, Plus } from "lucide-react";
+import { Undo2, Plus } from "lucide-react";
 import { subscriptionApi } from "@/api/subscription.api";
 import { Payment } from "@/types/payment";
 import { Frequency } from "@/types/frequency";
@@ -21,12 +21,16 @@ interface Props {
   types: Type[];
   frequencies: Frequency[];
   payments: Payment[];
+  loading?: boolean;
+  asksRefresh?: () => void; 
 }
 
 export default function SubscriptionAddForm({
   types,
   frequencies,
   payments,
+  loading = true,
+  asksRefresh,
 }: Props) {
   const [form, setForm] = useState(subscriptionApi.default);
 
@@ -34,26 +38,27 @@ export default function SubscriptionAddForm({
     e.preventDefault();
     await subscriptionApi.create(form);
     setForm(subscriptionApi.default);
+    if (asksRefresh) asksRefresh();
   };
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <div>
-        <Label htmlFor="name" className="mb-1">
+        <Label htmlFor="name" className="mb-2">
           Nom
         </Label>
         <Input
           id="name"
           value={form.name}
           onChange={(e) => setForm({ ...form, name: e.target.value })}
-          placeholder="Netflix"
+          placeholder="Netflix, Spotify, Unity, ..."
           required
         />
       </div>
 
       <div className="flex gap-x-4">
         <div>
-          <Label htmlFor="price" className="mb-1">
+          <Label htmlFor="price" className="mb-2">
             Prix
           </Label>
           <Input
@@ -69,7 +74,7 @@ export default function SubscriptionAddForm({
           />
         </div>
         <div className="flex-1">
-          <Label htmlFor="frequency" className="mb-1">
+          <Label htmlFor="frequency" className="mb-2">
             Fréquence
           </Label>
           <Select
@@ -93,7 +98,7 @@ export default function SubscriptionAddForm({
       </div>
 
       <div className="flex-1">
-        <Label htmlFor="payment" className="mb-1">
+        <Label htmlFor="payment" className="mb-2">
           Paiement
         </Label>
         <Select
@@ -115,7 +120,7 @@ export default function SubscriptionAddForm({
 
       <div className="flex gap-x-4">
         <div className="flex-1">
-          <Label htmlFor="type" className="mb-1">
+          <Label htmlFor="type" className="mb-2">
             Type
           </Label>
           <Select
@@ -135,7 +140,7 @@ export default function SubscriptionAddForm({
           </Select>
         </div>
         <div>
-          <Label htmlFor="nextBilling" className="mb-1">
+          <Label htmlFor="nextBilling" className="mb-2">
             Prochain paiement
           </Label>
           <Input
@@ -151,14 +156,14 @@ export default function SubscriptionAddForm({
       </div>
 
       <div>
-        <Label htmlFor="category" className="mb-1">
+        <Label htmlFor="category" className="mb-2">
           Catégorie
         </Label>
         <Input
           id="category"
           value={form.category}
           onChange={(e) => setForm({ ...form, category: e.target.value })}
-          placeholder="Streaming"
+          placeholder="Streaming, Productivité, ..."
         />
       </div>
 
@@ -169,7 +174,7 @@ export default function SubscriptionAddForm({
           className="w-full sm:w-32 md:w-1/2 lg:w-full"
           onClick={() => setForm(subscriptionApi.default)}
         >
-          <History className="w-4 h-4 mr-2" />
+          <Undo2 className="w-4 h-4 mr-2" />
           Annuler
         </Button>
         <Button type="submit" className="flex-1">

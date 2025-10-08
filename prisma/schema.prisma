@@ -17,9 +17,9 @@ model Subscription {
   id          Int      @id @default(autoincrement())
   name        String
   price       Float
-  frequencyId Int
-  paymentId   Int
-  typeId      Int
+  frequencyId Int?
+  paymentId   Int?
+  typeId      Int?
   nextBilling DateTime
   category    String?
   active      Boolean  @default(true)

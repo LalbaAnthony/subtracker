@@ -27,7 +27,7 @@ export async function DELETE(
 
     try {
         await subscriptionService.delete(parseInt(params.id));
-        status = 204;
+        status = 200;
     } catch (error) {
         return NextResponse.json({ error: 'Could not process request' + error }, { status: 500 });
     }

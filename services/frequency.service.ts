@@ -5,7 +5,7 @@ const frequencies: Frequency[] = [
     { id: 1, days: 7, name: "Hebdomadaire", class: "bg-orange-100 text-orange-800" },
     { id: 2, days: 31, name: "Mensuel", class: "bg-purple-100 text-purple-800" },
     { id: 3, days: 365, name: "Annuel", class: "bg-yellow-100 text-yellow-800" },
-    { id: 4, days: 365 * 2, name: "Tout les deux ans", class: "bg-green-100 text-green-800" },
+    { id: 4, days: 365 * 2, name: "Deux ans", class: "bg-green-100 text-green-800" },
 ];
 
 class FrequencyService {
