@@ -14,13 +14,14 @@ import { subscriptionApi } from "@/api/subscription.api";
 import { Payment } from "@/types/payment";
 import { Frequency } from "@/types/frequency";
 import { Type } from "@/types/type";
+import { Skeleton } from "../ui/skeleton";
 
 interface Props {
   types: Type[];
   frequencies: Frequency[];
   payments: Payment[];
   loading?: boolean;
-  asksRefresh?: () => void; 
+  asksRefresh?: () => void;
 }
 
 export default function SubscriptionAddForm({
@@ -75,23 +76,28 @@ export default function SubscriptionAddForm({
           <Label htmlFor="frequency" className="mb-2">
             Fréquence
           </Label>
-          <Select
-            value={form.frequencyId?.toString() || ""}
-            onValueChange={(v) =>
-              setForm({ ...form, frequencyId: parseInt(v) })
-            }
-          >
-            <SelectTrigger id="frequency" className="w-full">
-              <SelectValue />
-            </SelectTrigger>
-            <SelectContent>
-              {frequencies.map((freq) => (
-                <SelectItem key={freq.id} value={freq.id?.toString() || ""}>
-                  {freq.name}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+
+          {loading ? (
+            <Skeleton className="h-9 w-[75px] rounded-md" />
+          ) : (
+            <Select
+              value={form.frequencyId?.toString() || ""}
+              onValueChange={(v) =>
+                setForm({ ...form, frequencyId: parseInt(v) })
+              }
+            >
+              <SelectTrigger id="frequency" className="w-full">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                {frequencies.map((freq) => (
+                  <SelectItem key={freq.id} value={freq.id?.toString() || ""}>
+                    {freq.name}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          )}
         </div>
       </div>
 
@@ -99,21 +105,25 @@ export default function SubscriptionAddForm({
         <Label htmlFor="payment" className="mb-2">
           Paiement
         </Label>
-        <Select
-          value={form.paymentId?.toString() || ""}
-          onValueChange={(v) => setForm({ ...form, paymentId: parseInt(v) })}
-        >
-          <SelectTrigger id="payment" className="w-full">
-            <SelectValue />
-          </SelectTrigger>
-          <SelectContent>
-            {payments.map((pay) => (
-              <SelectItem key={pay.id} value={pay.id?.toString() || ""}>
-                {pay.name}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
+        {loading ? (
+          <Skeleton className="h-9 w-[75px] rounded-md" />
+        ) : (
+          <Select
+            value={form.paymentId?.toString() || ""}
+            onValueChange={(v) => setForm({ ...form, paymentId: parseInt(v) })}
+          >
+            <SelectTrigger id="payment" className="w-full">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              {payments.map((pay) => (
+                <SelectItem key={pay.id} value={pay.id?.toString() || ""}>
+                  {pay.name}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        )}
       </div>
 
       <div className="flex gap-x-4">
@@ -121,21 +131,25 @@ export default function SubscriptionAddForm({
           <Label htmlFor="type" className="mb-2">
             Type
           </Label>
-          <Select
-            value={form.typeId?.toString() || ""}
-            onValueChange={(v) => setForm({ ...form, typeId: parseInt(v) })}
-          >
-            <SelectTrigger id="type" className="w-full">
-              <SelectValue />
-            </SelectTrigger>
-            <SelectContent>
-              {types.map((type) => (
-                <SelectItem key={type.id} value={type.id?.toString() || ""}>
-                  {type.name}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+          {loading ? (
+            <Skeleton className="h-9 w-[75px] rounded-md" />
+          ) : (
+            <Select
+              value={form.typeId?.toString() || ""}
+              onValueChange={(v) => setForm({ ...form, typeId: parseInt(v) })}
+            >
+              <SelectTrigger id="type" className="w-full">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                {types.map((type) => (
+                  <SelectItem key={type.id} value={type.id?.toString() || ""}>
+                    {type.name}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          )}
         </div>
         <div>
           <Label htmlFor="nextBilling" className="mb-2">

@@ -8,7 +8,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Trash2, Pen } from "lucide-react";
+import { Trash2, Power } from "lucide-react";
 import { Subscription } from "@/types/subscription";
 import { Payment } from "@/types/payment";
 import { Frequency } from "@/types/frequency";
@@ -33,7 +33,7 @@ export default function SubscriptionList({
   loading = true,
   asksRefresh,
 }: Props) {
-  const handleUpdate = (id: number) => {
+  const handleToggle = (id: number) => {
     window.location.href = `/subscriptions/${id}`;
   };
 
@@ -132,9 +132,9 @@ export default function SubscriptionList({
                       <Button
                         variant="ghost"
                         size="icon"
-                        onClick={() => handleUpdate(sub.id)}
+                        onClick={() => handleToggle(sub.id)}
                       >
-                        <Pen className="w-4 h-4 text-primary" />
+                        <Power className="w-4 h-4 text-primary" />
                       </Button>
                       <Button
                         variant="ghost"
@@ -176,9 +176,9 @@ export default function SubscriptionList({
                       <Button
                         variant="ghost"
                         size="icon"
-                        onClick={() => handleUpdate(sub.id)}
+                        onClick={() => handleToggle(sub.id)}
                       >
-                        <Pen className="w-4 h-4 text-primary" />
+                        <Power className="w-4 h-4 text-primary" />
                       </Button>
                       <Button
                         variant="ghost"

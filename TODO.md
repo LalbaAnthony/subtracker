@@ -12,7 +12,7 @@ Must:
 - [x] Add loaders
 - [x] Server Components vs Client Components
 - [x] Limit the dashboard list to the next 5 payments
-- [ ] Make API utils to avoid repeating code in *.api.ts
+- [x] Make API utils to avoid repeating code in *.api.ts
 - [ ] Page de liste avec pagination
 - [ ] Add toggle button on list
 - [ ] Page de modification

@@ -1,14 +1,14 @@
 "use client";
 
-import { useState, useEffect, Suspense } from "react";
+import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import {
   Calendar,
   TrendingUp,
   SquareArrowOutUpRight,
-  PowerOff,
-  Power,
+  X,
+  Check,
   CalendarRange,
 } from "lucide-react";
 import { Subscription } from "@/types/subscription";
@@ -69,12 +69,15 @@ export default function Page() {
 
   return (
     <div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 mb-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6 mb-8">
         <DashboardStat
           title="Prochaine date"
           value={
             dashboard.nextBilling
-              ? new Date(dashboard.nextBilling).toLocaleDateString("fr-FR")
+              ? new Date(dashboard.nextBilling).toLocaleDateString("fr-FR", {
+                  day: "2-digit",
+                  month: "short",
+                })
               : "-"
           }
           iconNode={<CalendarRange className="w-4 h-4" />}
@@ -96,16 +99,16 @@ export default function Page() {
           loading={loading}
         />
         <DashboardStat
-          title="Abonnements Actifs"
+          title="Actifs"
           value={dashboard.actives}
-          iconNode={<Power className="w-4 h-4" />}
+          iconNode={<Check className="w-4 h-4" />}
           iconClass="text-green-500"
           loading={loading}
         />
         <DashboardStat
-          title="Abonnements Inactifs"
+          title="Inactifs"
           value={dashboard.inactives}
-          iconNode={<PowerOff className="w-4 h-4" />}
+          iconNode={<X className="w-4 h-4" />}
           iconClass="text-red-500"
           loading={loading}
         />
