@@ -173,7 +173,7 @@ export default function SubscriptionAddForm({
         </Label>
         <Input
           id="category"
-          value={form.category}
+          value={form.category || ""}
           onChange={(e) => setForm({ ...form, category: e.target.value })}
           placeholder="Streaming, Productivité, ..."
         />

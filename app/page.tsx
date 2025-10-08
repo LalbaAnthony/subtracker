@@ -80,22 +80,22 @@ export default function Page() {
                 })
               : "-"
           }
-          iconNode={<CalendarRange className="w-4 h-4" />}
-          iconClass="text-orange-500"
-          loading={loading}
-        />
-        <DashboardStat
-          title="Total Mensuel"
-          value={`${dashboard.monthly} €`}
           iconNode={<TrendingUp className="w-4 h-4" />}
           iconClass="text-blue-500"
           loading={loading}
-        />
+          />
+        <DashboardStat
+          title="Total Mensuel"
+          value={`${dashboard.monthly} €`}
+          iconNode={<Calendar className="w-4 h-4" />}
+          iconClass="text-purple-500"
+          loading={loading}
+          />
         <DashboardStat
           title="Total Annuel"
           value={`${dashboard.yearly} €`}
-          iconNode={<Calendar className="w-4 h-4" />}
-          iconClass="text-purple-500"
+          iconNode={<CalendarRange className="w-4 h-4" />}
+          iconClass="text-orange-500"
           loading={loading}
         />
         <DashboardStat
@@ -115,7 +115,7 @@ export default function Page() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <Card className="lg:col-span-1">
+        <Card className="lg:col-span-1">  
           <CardHeader className="flex flex-row items-center justify-between">
             <CardTitle className="my-2">Ajouter</CardTitle>
           </CardHeader>

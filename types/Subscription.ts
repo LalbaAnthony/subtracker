@@ -6,7 +6,7 @@ export interface Subscription {
     frequencyId?: number | null | undefined;
     paymentId?: number | null | undefined;
     typeId?: number | null | undefined;
-    category?: string | null | undefined;
+    category?: string | null;
     active: boolean;
     createdAt: Date;
     updatedAt: Date;
@@ -19,5 +19,5 @@ export interface SubscriptionCreation extends Record<string, unknown> {
     frequencyId?: number | null | undefined;
     paymentId?: number | null | undefined;
     typeId?: number | null | undefined;
-    category?: string | null | undefined;
+    category?: string | null;
 }
