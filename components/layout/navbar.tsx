@@ -11,7 +11,7 @@ export const items: {
   description: string;
 }[] = [
   {
-    title: "Tout les abonnements",
+    title: "Tout",
     href: "/list",
     description: "",
   },

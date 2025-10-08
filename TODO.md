@@ -4,15 +4,15 @@
 - [x] Make the list a component
 - [x] Page individuelle (/subs/[id])
 - [x] Replace the dashboard values by a dedicated enpoint (to avoid fecthing subs multiple times)
-- [ ] Déplacer le statique de type, frequence, type dans services
-- [ ] Faire des tableau pour statiques
-- [ ] Remettre les statiques dans list
-- [ ] Make category a table etc
+- [x] Déplacer le statique de type, frequence, type dans services
+- [x] Faire des tableau pour statiques
+- [x] Remettre les statiques dans list
 - [ ] Make the dashboard reload when a new item is added from the dashboard
 - [ ] Add loaders
 - [ ] Liste avec pagination
 - [ ] Limit the dashboard list to the next 5 payments
 - [ ] Sort and filter (the next payments first, ...)
+- [ ] Make category a table etc
 - [ ] Server Components vs Client Components
 - [ ] Authentification basique
 - [ ] Host avec vercel (passer BDD en PG avant ?)

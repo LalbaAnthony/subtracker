@@ -11,11 +11,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Plus } from "lucide-react";
+import { History, Plus } from "lucide-react";
 import { subscriptionApi } from "@/api/subscription.api";
 import { Payment } from "@/types/payment";
 import { Frequency } from "@/types/frequency";
 import { Type } from "@/types/type";
+
 export default function SubscriptionAddForm({
   types,
   frequencies,
@@ -159,10 +160,21 @@ export default function SubscriptionAddForm({
         />
       </div>
 
-      <Button type="submit" className="w-full">
-        <Plus className="w-4 h-4 mr-2" />
-        Ajouter
-      </Button>
+      <div className="flex sm:flex-row md:flex-col lg:flex-row gap-4">
+        <Button
+          type="button"
+          variant="outline"
+          className="sm:w-24 md:w-full lg:w-24"
+          onClick={() => setForm(subscriptionApi.default)}
+        >
+          <History className="w-4 h-4 mr-2" />
+          Annuler
+        </Button>
+        <Button type="submit" className="flex-1">
+          <Plus className="w-4 h-4 mr-2" />
+          Ajouter
+        </Button>
+      </div>
     </form>
   );
 }

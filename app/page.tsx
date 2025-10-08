@@ -8,7 +8,7 @@ import {
   TrendingUp,
   SquareArrowOutUpRight,
   PowerOff,
-  PowerIcon,
+  Power,
 } from "lucide-react";
 import { Subscription } from "@/types/subscription";
 import { subscriptionApi } from "@/api/subscription.api";
@@ -23,6 +23,7 @@ import { paymentApi } from "@/api/payments.api";
 import { Payment } from "@/types/payment";
 import { Frequency } from "@/types/frequency";
 import { Type } from "@/types/type";
+import DashboardStat from "@/components/cards/dashboard-stat";
 
 export default function Page() {
   const [dashboard, setDashboard] = useState<Dashboard>(dashboardApi.default);
@@ -50,50 +51,31 @@ export default function Page() {
 
   return (
     <div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-8">
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between">
-            <CardTitle className="text-sm font-medium">Total Mensuel</CardTitle>
-            <TrendingUp className="w-4 h-4 text-blue-500" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">{dashboard.monthly} €</div>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between">
-            <CardTitle className="text-sm font-medium">Total Annuel</CardTitle>
-            <Calendar className="w-4 h-4 text-purple-500" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">{dashboard.yearly} €</div>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between">
-            <CardTitle className="text-sm font-medium">
-              Abonnements Actifs
-            </CardTitle>
-            <PowerIcon className="w-4 h-4 text-green-500" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">{dashboard.actives}</div>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between">
-            <CardTitle className="text-sm font-medium">
-              Abonnements Inactifs
-            </CardTitle>
-            <PowerOff className="w-4 h-4 text-red-500" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">{dashboard.inactives}</div>
-          </CardContent>
-        </Card>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 mb-8">
+        <DashboardStat
+          title="Total Mensuel"
+          value={`${dashboard.monthly} €`}
+          iconNode={<TrendingUp className="w-4 h-6" />}
+          iconClass="text-blue-500"
+        />
+        <DashboardStat
+          title="Total Annuel"
+          value={`${dashboard.yearly} €`}
+          iconNode={<Calendar className="w-4 h-6" />}
+          iconClass="text-purple-500"
+        />
+        <DashboardStat
+          title="Abonnements Actifs"
+          value={dashboard.actives}
+          iconNode={<Power className="w-4 h-6" />}
+          iconClass="text-green-500"
+        />
+        <DashboardStat
+          title="Abonnements Inactifs"
+          value={dashboard.inactives}
+          iconNode={<PowerOff className="w-4 h-6" />}
+          iconClass="text-red-500"
+        />
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">

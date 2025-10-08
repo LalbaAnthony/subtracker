@@ -70,8 +70,7 @@ export default function SubscriptionList({
                       types.find((t) => t.id === sub.typeId)?.class
                     }`}
                   >
-                    {types.find((t) => t.id === sub.typeId)?.name ||
-                      "Inconnu"}
+                    {types.find((t) => t.id === sub.typeId)?.name || "Inconnu"}
                   </span>
                 </td>
                 <td className="px-4 py-3">
@@ -91,8 +90,8 @@ export default function SubscriptionList({
                       frequencies.find((f) => f.id === sub.frequencyId)?.class
                     }`}
                   >
-                    {frequencies.find((f) => f.id === sub.frequencyId)
-                      ?.name || "Inconnu"}
+                    {frequencies.find((f) => f.id === sub.frequencyId)?.name ||
+                      "Inconnu"}
                   </span>
                 </td>
                 <td className="px-4 py-3">
