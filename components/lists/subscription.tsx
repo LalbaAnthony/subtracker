@@ -33,8 +33,9 @@ export default function SubscriptionList({
   loading = true,
   asksRefresh,
 }: Props) {
-  const handleToggle = (id: number) => {
-    window.location.href = `/subscriptions/${id}`;
+  const handleToggle = async (id: number) => {
+    await subscriptionApi.toggle(id);
+    if (asksRefresh) asksRefresh();
   };
 
   const handleDelete = async (id: number) => {
@@ -99,8 +100,7 @@ export default function SubscriptionList({
                           types.find((t) => t.id === sub.typeId)?.class
                         }`}
                       >
-                        {types.find((t) => t.id === sub.typeId)?.name ||
-                          "-"}
+                        {types.find((t) => t.id === sub.typeId)?.name || "-"}
                       </span>
                     </td>
                     <td className="px-4 py-3">
@@ -213,8 +213,7 @@ export default function SubscriptionList({
                         types.find((t) => t.id === sub.typeId)?.class
                       }`}
                     >
-                      {types.find((t) => t.id === sub.typeId)?.name ||
-                        "-"}
+                      {types.find((t) => t.id === sub.typeId)?.name || "-"}
                     </span>
                   </div>
                   <div className="flex justify-between">

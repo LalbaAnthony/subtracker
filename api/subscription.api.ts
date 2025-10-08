@@ -29,6 +29,10 @@ class SubscriptionApi {
         await del(`/api/subscriptions/${id}`);
     };
 
+    public async toggle(id: number): Promise<void> {
+        console.log("Toggling subscription with id:", id);
+    }
+
     public async create(subscription: SubscriptionCreation): Promise<Subscription> {
         const result = await post<Subscription>("/subscriptions/create", subscription);
         return result.data.data as Subscription;
