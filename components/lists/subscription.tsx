@@ -91,7 +91,12 @@ export default function SubscriptionList({
               </thead>
               <tbody className="divide-y">
                 {subscriptions.map((sub) => (
-                  <tr key={sub.id} className="hover:bg-muted/50">
+                  <tr
+                    key={sub.id}
+                    className={`hover:bg-muted/50  ${
+                      !sub.active ? "line-through text-gray-500" : ""
+                    }`}
+                  >
                     <td className="px-4 py-3 font-medium">{sub.name}</td>
                     <td className="px-4 py-3">{sub.category || "-"}</td>
                     <td className="px-4 py-3">
@@ -134,7 +139,7 @@ export default function SubscriptionList({
                         size="icon"
                         onClick={() => handleToggle(sub.id)}
                       >
-                        <Power className="w-4 h-4 text-primary" />
+                        <Power className={`w-4 h-4 ${!sub.active ? "text-gray-500" : ""}`} />
                       </Button>
                       <Button
                         variant="ghost"
@@ -163,7 +168,10 @@ export default function SubscriptionList({
         ) : (
           <div className="space-y-4">
             {subscriptions.map((sub) => (
-              <Card key={sub.id}>
+              <Card
+                key={sub.id}
+                className={!sub.active ? "line-through text-gray-500" : ""}
+              >
                 <CardHeader className="pb-3">
                   <div className="flex justify-between items-start">
                     <div>

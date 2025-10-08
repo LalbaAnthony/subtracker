@@ -57,6 +57,16 @@ class SubscriptionService {
 
         return updatedSubscription;
     };
+
+    public async toggle(id: number): Promise<void> {
+        const subscription = await prisma.subscription.findUnique({ where: { id } });
+        if (!subscription) throw new Error('Subscription not found');
+
+        await prisma.subscription.update({
+            where: { id },
+            data: { active: !subscription.active, updatedAt: new Date() },
+        });
+    }
 }
 
 export const subscriptionService = new SubscriptionService();

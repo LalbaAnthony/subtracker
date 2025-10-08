@@ -14,8 +14,8 @@ Must:
 - [x] Limit the dashboard list to the next 5 payments
 - [x] Make API utils to avoid repeating code in *.api.ts
 - [ ] Page de liste avec pagination
-- [ ] Add toggle button on list
-- [ ] Page de modification
+- [x] Add toggle button on list
+- [-] Page de modification
 - [ ] Authentification basique
 - [ ] Host avec vercel (passer BDD en PG avant ?)
 - [ ] Faire readme complet

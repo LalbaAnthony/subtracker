@@ -7,6 +7,7 @@ class DashboardService {
     private async computeMonthly(subscriptions: Subscription[]): Promise<number> {
         subscriptions = subscriptions
             .filter(s => s.active);
+            .filter(s => s.price > 0)
 
         const frequencies = await frequencyService.getAll();
 
@@ -32,6 +33,7 @@ class DashboardService {
     private async computeNextBilling(subscriptions: Subscription[]): Promise<Date | null> {
         subscriptions = subscriptions
             .filter(s => s.active)
+            .filter(s => s.price > 0)
             .filter(s => s.nextBilling !== null);
 
         if (subscriptions.length === 0) return null;

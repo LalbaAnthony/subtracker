@@ -30,7 +30,7 @@ class SubscriptionApi {
     };
 
     public async toggle(id: number): Promise<void> {
-        console.log("Toggling subscription with id:", id);
+        await post(`/subscriptions/${id}/toggle`);
     }
 
     public async create(subscription: SubscriptionCreation): Promise<Subscription> {
