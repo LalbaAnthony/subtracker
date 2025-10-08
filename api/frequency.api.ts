@@ -1,11 +1,9 @@
 import { Frequency } from "@/types/frequency";
-
+import { get } from "@/utils/api";
 class FrequencyApi {
     public async getAll(): Promise<Frequency[]> {
-        const res = await fetch("/api/frequencies");
-        const result = await res.json();
-
-        return result?.data || [];
+        const result = await get<Frequency[]>("/dashboard");
+        return result.data.data as Frequency[];
     };
 }
 

@@ -1,4 +1,5 @@
 import { Dashboard } from "@/types/dashboard";
+import { get } from "@/utils/api";
 
 class DashboardApi {
     public get default(): Dashboard {
@@ -12,10 +13,8 @@ class DashboardApi {
     }
 
     public async get(): Promise<Dashboard> {
-        const res = await fetch("/api/dashboard");
-        const result = await res.json();
-
-        return result?.data || {};
+        const result = await get<Dashboard>("/dashboard");
+        return result.data.data as Dashboard;
     };
 }
 

@@ -12,7 +12,7 @@ export interface Subscription {
     updatedAt: Date;
 }
 
-export interface SubscriptionCreation {
+export interface SubscriptionCreation extends Record<string, unknown> {
     name: string;
     price: number;
     nextBilling: Date;
