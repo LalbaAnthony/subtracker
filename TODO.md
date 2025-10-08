@@ -7,6 +7,7 @@
 - [ ] Déplacer le statique de type, frequence, type dans services
 - [ ] Faire des tableau pour statiques
 - [ ] Remettre les statiques dans list
+- [ ] Make category a table etc
 - [ ] Make the dashboard reload when a new item is added from the dashboard
 - [ ] Add loaders
 - [ ] Liste avec pagination
@@ -15,4 +16,5 @@
 - [ ] Server Components vs Client Components
 - [ ] Authentification basique
 - [ ] Host avec vercel (passer BDD en PG avant ?)
+- [ ] Faire readme complet
 - [ ] Check consigne un derniere fois avant de soumettre

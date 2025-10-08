@@ -13,26 +13,24 @@ import {
 } from "@/components/ui/select";
 import { Plus } from "lucide-react";
 import { subscriptionApi } from "@/api/subscription.api";
-import { typeApi } from "@/api/type.api";
-import { frequencyApi } from "@/api/frequency.api";
-import { paymentApi } from "@/api/payments.api";
-
+import { Payment } from "@/types/payment";
+import { Frequency } from "@/types/frequency";
+import { Type } from "@/types/type";
 export default function SubscriptionAddForm({
-  asksReload,
+  types,
+  frequencies,
+  payments,
 }: {
-  asksReload: () => void;
+  types: Type[];
+  frequencies: Frequency[];
+  payments: Payment[];
 }) {
   const [form, setForm] = useState(subscriptionApi.default);
-
-  const types = typeApi.getAll();
-  const frequencies = frequencyApi.getAll();
-  const payments = paymentApi.getAll();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     await subscriptionApi.create(form);
     setForm(subscriptionApi.default);
-    asksReload();
   };
 
   return (
@@ -72,16 +70,18 @@ export default function SubscriptionAddForm({
             Fréquence
           </Label>
           <Select
-            value={form.frequency}
-            onValueChange={(v) => setForm({ ...form, frequency: v })}
+            value={form.frequencyId?.toString() || ""}
+            onValueChange={(v) =>
+              setForm({ ...form, frequencyId: parseInt(v) })
+            }
           >
             <SelectTrigger id="frequency" className="w-full">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
-              {Object.entries(frequencies).map(([key, object]) => (
-                <SelectItem key={key} value={key}>
-                  {object.name}
+              {frequencies.map((freq) => (
+                <SelectItem key={freq.id} value={freq.id?.toString() || ""}>
+                  {freq.name}
                 </SelectItem>
               ))}
             </SelectContent>
@@ -94,16 +94,16 @@ export default function SubscriptionAddForm({
           Paiement
         </Label>
         <Select
-          value={form.payment}
-          onValueChange={(v) => setForm({ ...form, payment: v })}
+          value={form.paymentId?.toString() || ""}
+          onValueChange={(v) => setForm({ ...form, paymentId: parseInt(v) })}
         >
           <SelectTrigger id="payment" className="w-full">
             <SelectValue />
           </SelectTrigger>
           <SelectContent>
-            {Object.entries(payments).map(([key, object]) => (
-              <SelectItem key={key} value={key}>
-                {object.name}
+            {payments.map((pay) => (
+              <SelectItem key={pay.id} value={pay.id?.toString() || ""}>
+                {pay.name}
               </SelectItem>
             ))}
           </SelectContent>
@@ -116,16 +116,16 @@ export default function SubscriptionAddForm({
             Type
           </Label>
           <Select
-            value={form.type}
-            onValueChange={(v) => setForm({ ...form, type: v })}
+            value={form.typeId?.toString() || ""}
+            onValueChange={(v) => setForm({ ...form, typeId: parseInt(v) })}
           >
             <SelectTrigger id="type" className="w-full">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
-              {Object.entries(types).map(([key, object]) => (
-                <SelectItem key={key} value={key}>
-                  {object.name}
+              {types.map((type) => (
+                <SelectItem key={type.id} value={type.id?.toString() || ""}>
+                  {type.name}
                 </SelectItem>
               ))}
             </SelectContent>

@@ -2,10 +2,10 @@ export interface Subscription {
     id: number;
     name: string;
     price: number;
-    frequency: string;
-    payment: string;
-    type: string;
     nextBilling: Date;
+    frequencyId?: number | null;
+    paymentId?: number | null;
+    typeId?: number | null;
     category?: string;
     active: boolean;
 }
@@ -13,9 +13,9 @@ export interface Subscription {
 export interface SubscriptionCreation {
     name: string;
     price: number;
-    frequency: string;
-    payment: string;
-    type: string;
     nextBilling: Date;
+    frequencyId?: number | null;
+    paymentId?: number | null;
+    typeId?: number | null;
     category?: string;
 }

@@ -10,15 +10,21 @@ import {
 import { Button } from "@/components/ui/button";
 import { Trash2, Pen } from "lucide-react";
 import { Subscription } from "@/types/subscription";
+import { Payment } from "@/types/payment";
+import { Frequency } from "@/types/frequency";
+import { Type } from "@/types/type";
 import { subscriptionApi } from "@/api/subscription.api";
-// import { types } from "@/api/type.api";
-// import { frequencies } from "@/api/frequency.api";
-// import { payments } from "@/api/payments.api";
 
 export default function SubscriptionList({
   subscriptions,
+  types,
+  frequencies,
+  payments,
 }: {
   subscriptions: Subscription[];
+  types: Type[];
+  frequencies: Frequency[];
+  payments: Payment[];
 }) {
   const handleUpdate = (id: number) => {
     window.location.href = `/subscriptions/${id}`;
@@ -39,17 +45,15 @@ export default function SubscriptionList({
               <th className="px-4 py-3 text-left text-sm font-medium">
                 Catégorie
               </th>
-              {/* <th className="px-4 py-3 text-left text-sm font-medium">Type</th> */}
-              {/* <th className="px-4 py-3 text-left text-sm font-medium">
-                Paiment
-              </th> */}
-              <th className="px-4 py-3 text-left text-sm font-medium">Prix</th>
-              {/* <th className="px-4 py-3 text-left text-sm font-medium">
-                Fréquence
-              </th> */}
+              <th className="px-4 py-3 text-left text-sm font-medium">Type</th>
               <th className="px-4 py-3 text-left text-sm font-medium">
-                Date
+                Paiment
               </th>
+              <th className="px-4 py-3 text-left text-sm font-medium">Prix</th>
+              <th className="px-4 py-3 text-left text-sm font-medium">
+                Fréquence
+              </th>
+              <th className="px-4 py-3 text-left text-sm font-medium">Date</th>
               <th className="px-4 py-3 text-right text-sm font-medium">
                 &nbsp;
               </th>
@@ -60,34 +64,37 @@ export default function SubscriptionList({
               <tr key={sub.id} className="hover:bg-muted/50">
                 <td className="px-4 py-3 font-medium">{sub.name}</td>
                 <td className="px-4 py-3">{sub.category || "-"}</td>
-                {/* <td className="px-4 py-3">
+                <td className="px-4 py-3">
                   <span
                     className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-                      types[sub.type].class
+                      types.find((t) => t.id === sub.typeId)?.class
                     }`}
                   >
-                    {types[sub.type].name}
+                    {types.find((t) => t.id === sub.typeId)?.name ||
+                      "Inconnu"}
                   </span>
-                </td> */}
-                {/* <td className="px-4 py-3">
+                </td>
+                <td className="px-4 py-3">
                   <span
                     className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-                      payments[sub.payment].class
+                      payments.find((p) => p.id === sub.paymentId)?.class
                     }`}
                   >
-                    {payments[sub.payment].name}
+                    {payments.find((p) => p.id === sub.paymentId)?.name ||
+                      "Inconnu"}
                   </span>
-                </td> */}
+                </td>
                 <td className="px-4 py-3">{sub.price} €</td>
-                {/* <td className="px-4 py-3">
+                <td className="px-4 py-3">
                   <span
                     className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-                      frequencies[sub.frequency].class
+                      frequencies.find((f) => f.id === sub.frequencyId)?.class
                     }`}
                   >
-                    {frequencies[sub.frequency].name}
+                    {frequencies.find((f) => f.id === sub.frequencyId)
+                      ?.name || "Inconnu"}
                   </span>
-                </td> */}
+                </td>
                 <td className="px-4 py-3">
                   {new Date(sub.nextBilling).toLocaleDateString("fr-FR")}
                 </td>
@@ -152,36 +159,36 @@ export default function SubscriptionList({
                 <span className="text-muted-foreground">Fréquence:</span>
                 <span
                   className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-                    frequencies[sub.frequency].class
+                    frequencies.find((f) => f.id === sub.frequencyId)?.class
                   }`}
                 >
-                  {frequencies[sub.frequency].name}
+                  {frequencies.find((f) => f.id === sub.frequencyId)?.name ||
+                    "Inconnu"}
                 </span>
               </div>
               <div className="flex justify-between">
                 <span className="text-muted-foreground">Type:</span>
                 <span
                   className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-                    types[sub.type].class
+                    types.find((t) => t.id === sub.typeId)?.class
                   }`}
                 >
-                  {types[sub.type].name}
+                  {types.find((t) => t.id === sub.typeId)?.name || "Inconnu"}
                 </span>
               </div>
               <div className="flex justify-between">
                 <span className="text-muted-foreground">Paiment:</span>
                 <span
                   className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-                    payments[sub.payment].class
+                    payments.find((p) => p.id === sub.paymentId)?.class
                   }`}
                 >
-                  {payments[sub.payment].name}
+                  {payments.find((p) => p.id === sub.paymentId)?.name ||
+                    "Inconnu"}
                 </span>
               </div>
               <div className="flex justify-between">
-                <span className="text-muted-foreground">
-                  Date:
-                </span>
+                <span className="text-muted-foreground">Date:</span>
                 <span>
                   {new Date(sub.nextBilling).toLocaleDateString("fr-FR")}
                 </span>

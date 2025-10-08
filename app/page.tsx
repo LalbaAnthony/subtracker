@@ -17,12 +17,19 @@ import Link from "next/link";
 import SubscriptionList from "@/components/lists/subscription";
 import { dashboardApi } from "@/api/dashboard.api";
 import { Dashboard } from "@/types/dashboard";
+import { typeApi } from "@/api/type.api";
+import { frequencyApi } from "@/api/frequency.api";
+import { paymentApi } from "@/api/payments.api";
+import { Payment } from "@/types/payment";
+import { Frequency } from "@/types/frequency";
+import { Type } from "@/types/type";
 
 export default function Page() {
+  const [dashboard, setDashboard] = useState<Dashboard>(dashboardApi.default);
   const [subscriptions, setSubscriptions] = useState<Subscription[]>([]);
-  const [dashboard, setDashboard] = useState<Dashboard>(
-    dashboardApi.default
-  );
+  const [types, setTypes] = useState<Type[]>([]);
+  const [frequencies, setFrequencies] = useState<Frequency[]>([]);
+  const [payments, setPayments] = useState<Payment[]>([]);
 
   useEffect(() => {
     reloadData();
@@ -33,6 +40,12 @@ export default function Page() {
     setSubscriptions(subData);
     const dashData = await dashboardApi.get();
     setDashboard(dashData);
+    const typeData = await typeApi.getAll();
+    setTypes(typeData);
+    const frequencyData = await frequencyApi.getAll();
+    setFrequencies(frequencyData);
+    const paymentData = await paymentApi.getAll();
+    setPayments(paymentData);
   };
 
   return (
@@ -89,7 +102,11 @@ export default function Page() {
             <CardTitle>Nouvel Abonnement</CardTitle>
           </CardHeader>
           <CardContent>
-            <SubscriptionAddForm asksReload={reloadData} />
+            <SubscriptionAddForm
+              payments={payments}
+              types={types}
+              frequencies={frequencies}
+            />
           </CardContent>
         </Card>
 
@@ -103,7 +120,12 @@ export default function Page() {
             </Link>
           </CardHeader>
           <CardContent>
-            <SubscriptionList subscriptions={subscriptions} />
+            <SubscriptionList
+              subscriptions={subscriptions}
+              payments={payments}
+              types={types}
+              frequencies={frequencies}
+            />
           </CardContent>
         </Card>
       </div>

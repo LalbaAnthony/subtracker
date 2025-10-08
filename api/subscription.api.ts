@@ -5,9 +5,9 @@ class SubscriptionApi {
         return {
             name: "",
             price: 0,
-            frequency: "monthly",
-            payment: "card",
-            type: "auto",
+            frequencyId: null,
+            paymentId: null,
+            typeId: null,
             nextBilling: new Date(),
             category: "",
         };
