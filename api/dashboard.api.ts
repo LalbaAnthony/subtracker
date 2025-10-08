@@ -13,9 +13,9 @@ class DashboardApi {
 
     public async get(): Promise<Dashboard> {
         const res = await fetch("/api/dashboard");
-        const data = await res.json();
+        const result = await res.json();
 
-        return data;
+        return result?.data || {};
     };
 }
 

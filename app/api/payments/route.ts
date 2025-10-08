@@ -3,5 +3,5 @@ import { paymentService } from '@/services/payment.service';
 
 export async function GET() {
     const payments = await paymentService.getAll();
-    return NextResponse.json(payments, { status: 200 });
+    return NextResponse.json({ data: payments }, { status: 200 });
 }

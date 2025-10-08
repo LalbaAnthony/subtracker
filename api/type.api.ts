@@ -3,9 +3,9 @@ import { Type } from "@/types/type";
 class TypeApi {
     public async getAll(): Promise<Type[]> {
         const res = await fetch("/api/types");
-        const data = await res.json();
+        const result = await res.json();
 
-        return data;
+        return result?.data || [];
     };
 }
 

@@ -15,9 +15,9 @@ class SubscriptionApi {
 
     public async getAll(): Promise<Subscription[]> {
         const res = await fetch("/api/subscriptions");
-        const data = await res.json();
+        const result = await res.json();
 
-        return data;
+        return result?.data || [];
     };
 
     public async delete(id: number): Promise<void> {

@@ -14,7 +14,7 @@ export async function PUT(
         return NextResponse.json({ error: 'Could not process request' + error }, { status: 500 });
     }
 
-    return NextResponse.json(subscription, { status: 200 });
+    return NextResponse.json({ data: subscription }, { status: 200 });
 }
 
 export async function DELETE(
@@ -28,5 +28,5 @@ export async function DELETE(
         return NextResponse.json({ error: 'Could not process request' + error }, { status: 500 });
     }
 
-    return NextResponse.json(null, { status: 200 });
+    return NextResponse.json({ data: null }, { status: 200 });
 }
