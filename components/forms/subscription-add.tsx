@@ -160,11 +160,11 @@ export default function SubscriptionAddForm({
         />
       </div>
 
-      <div className="flex sm:flex-row md:flex-col lg:flex-row gap-4">
+      <div className="flex flex-col sm:flex-row md:flex-row lg:flex-col gap-4">
         <Button
           type="button"
           variant="outline"
-          className="sm:w-24 md:w-full lg:w-24"
+          className="w-full sm:w-32 md:w-1/2 lg:w-full"
           onClick={() => setForm(subscriptionApi.default)}
         >
           <History className="w-4 h-4 mr-2" />

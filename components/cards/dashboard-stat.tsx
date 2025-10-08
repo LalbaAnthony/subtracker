@@ -32,7 +32,7 @@ export default function DashboardStat({
             <div className={iconClass}>{iconNode}</div>
             <div className="text-sm font-medium">{title}</div>
           </div>
-          <div className="text-l font-bold">{value}</div>
+          <div className="text-l font-medium sm:text-xl sm:font-bold">{value}</div>
         </CardContent>
       </Card>
     </div>
