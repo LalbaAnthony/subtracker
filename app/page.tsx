@@ -41,7 +41,9 @@ export default function Page() {
   const reloadData = async () => {
     setLoading(true);
 
-    const subData = await subscriptionApi.getAll();
+    const subData = await subscriptionApi.getAll({
+      pagination: { page: 1, limit: 5 },
+    });
     setSubscriptions(subData);
 
     const dashData = await dashboardApi.get();

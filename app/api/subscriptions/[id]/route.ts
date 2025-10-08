@@ -11,7 +11,7 @@ export async function PUT(
         const data = await request.json();
         subscription = await subscriptionService.update(parseInt(params.id), data);
     } catch (error) {
-        return NextResponse.json({ error: 'Could not process request' + error }, { status: 500 });
+        return NextResponse.json({ error: 'Could not process the request: ' + error }, { status: 500 });
     }
 
     return NextResponse.json({ data: subscription }, { status: 200 });
@@ -25,7 +25,7 @@ export async function DELETE(
     try {
         await subscriptionService.delete(parseInt(params.id));
     } catch (error) {
-        return NextResponse.json({ error: 'Could not process request' + error }, { status: 500 });
+        return NextResponse.json({ error: 'Could not process the request: ' + error }, { status: 500 });
     }
 
     return NextResponse.json({ data: null }, { status: 200 });

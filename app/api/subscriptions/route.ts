@@ -20,7 +20,7 @@ export async function GET(
         const pagination = paginate(page, limit, count)
         subscriptions = await subscriptionService.getAll({ pagination, ...options });
     } catch (error) {
-        return NextResponse.json({ error: 'Could not process request' + error }, { status: 500 });
+        return NextResponse.json({ error: 'Could not process the request: ' + error }, { status: 500 });
     }
 
     return NextResponse.json({ data: subscriptions }, { status: 200 });
@@ -33,7 +33,7 @@ export async function POST(request: Request) {
         const data = await request.json();
         subscription = await subscriptionService.create(data);
     } catch (error) {
-        return NextResponse.json({ error: 'Could not process request' + error }, { status: 500 });
+        return NextResponse.json({ error: 'Could not process the request: ' + error }, { status: 500 });
     }
 
     return NextResponse.json({ data: subscription }, { status: 200 });
