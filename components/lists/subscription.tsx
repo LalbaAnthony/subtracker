@@ -241,7 +241,6 @@ export default function SubscriptionList({
         )}
       </div>
 
-
       {!loading && subscriptions.length === 0 && (
         <div className="py-12 text-center text-muted-foreground">
           Aucun abonnement enregistré

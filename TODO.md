@@ -11,6 +11,7 @@ Must:
 - [x] Make the dashboard reload when a new item is added from the dashboard
 - [x] Add loaders
 - [x] Server Components vs Client Components
+- [ ] Add toggle button on list
 - [ ] Limit the dashboard list to the next 5 payments
 - [ ] Page de liste avec pagination
 - [ ] Page de modification

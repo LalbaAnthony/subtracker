@@ -1,32 +1,40 @@
 import { NextResponse } from 'next/server';
 import { subscriptionService } from '@/services/subscription.service';
+import { paginate } from '@/utils/pagination';
 
-export async function GET(request: Request) {
-    let status = 500;
+export async function GET(
+    request: Request,
+) {
+    const { searchParams } = new URL(request.url);
+    const params = Object.fromEntries(searchParams.entries());
+
+    const page = Number(params?.page) || 1
+    const limit = Number(params?.limit) || 10
+    const search = String(params?.search || '')
+
     let subscriptions = [];
 
     try {
-        subscriptions = await subscriptionService.getAll();
+        const options = { search };
+        const count = await subscriptionService.count(options)
+        const pagination = paginate(page, limit, count)
+        subscriptions = await subscriptionService.getAll({ pagination, ...options });
     } catch (error) {
         return NextResponse.json({ error: 'Could not process request' + error }, { status: 500 });
     }
 
-    status = 200;
-
-    return NextResponse.json(subscriptions, { status });
+    return NextResponse.json(subscriptions, { status: 200 });
 }
 
 export async function POST(request: Request) {
-    let status = 500;
     let subscription = null;
 
     try {
         const data = await request.json();
         subscription = await subscriptionService.create(data);
-        status = subscription ? 201 : 400;
     } catch (error) {
         return NextResponse.json({ error: 'Could not process request' + error }, { status: 500 });
     }
 
-    return NextResponse.json(subscription, { status });
+    return NextResponse.json(subscription, { status: 200 });
 }

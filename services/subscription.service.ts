@@ -1,11 +1,33 @@
 import { prisma } from '@/lib/prisma';
+import { Pagination } from '@/types/pagination';
 import { Subscription, SubscriptionCreation } from '@/types/subscription';
 
 class SubscriptionService {
-    public async getAll(): Promise<Subscription[]> {
+    public async count(options: { search?: string }): Promise<number> {
+        const { search } = options;
+
+        const count = await prisma.subscription.count({
+            where: {
+                name: search ? { contains: search } : undefined,
+            },
+        });
+
+        return count;
+    }
+
+    public async getAll(options: { search?: string; pagination: Pagination }): Promise<Subscription[]> {
+        const { search, pagination } = options;
+        const { offset, limit } = pagination
+
         const subscriptions = await prisma.subscription.findMany({
-            orderBy: { createdAt: 'desc' }
-        }) as Subscription[];
+            where: {
+                name: search ? { contains: search } : undefined,
+            },
+            skip: offset,
+            take: limit,
+            orderBy: [{ typeId: 'asc', }, { frequencyId: 'asc', }, { paymentId: 'asc', }, { nextBilling: 'asc', }],
+        });
+
         return subscriptions;
     };
 
@@ -18,7 +40,7 @@ class SubscriptionService {
             data: {
                 ...subscription,
                 active: true,
-            } as Subscription,
+            } as SubscriptionCreation,
         });
 
         return newSubscription;
