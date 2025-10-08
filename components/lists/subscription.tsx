@@ -10,10 +10,10 @@ import {
 import { Button } from "@/components/ui/button";
 import { Trash2, Pen } from "lucide-react";
 import { Subscription } from "@/types/subscription";
-import { subscriptionService } from "@/services/subscription";
-import { types } from "@/services/type";
-import { frequencies } from "@/services/frequency";
-import { payments } from "@/services/payments";
+import { subscriptionApi } from "@/api/subscription.api";
+import { types } from "@/api/type.api";
+import { frequencies } from "@/api/frequency.api";
+import { payments } from "@/api/payments.api";
 
 export default function SubscriptionList({
   subscriptions,
@@ -25,7 +25,7 @@ export default function SubscriptionList({
   };
 
   const handleDelete = async (id: number) => {
-    await subscriptionService.delete(id);
+    await subscriptionApi.delete(id);
   };
 
   return (

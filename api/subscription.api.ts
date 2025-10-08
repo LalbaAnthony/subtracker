@@ -1,6 +1,6 @@
 import { Subscription, SubscriptionCreation } from "@/types/subscription";
 
-class SubscriptionService {
+class SubscriptionApi {
     public get default(): SubscriptionCreation {
         return {
             name: "",
@@ -39,4 +39,4 @@ class SubscriptionService {
     };
 }
 
-export const subscriptionService = new SubscriptionService();
+export const subscriptionApi = new SubscriptionApi();

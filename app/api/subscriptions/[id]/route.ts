@@ -1,28 +1,36 @@
-// app/api/subscriptions/[id]/route.ts
 import { NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';
+import { subscriptionService } from '@/services/subscription.service';
 
 export async function PUT(
     request: Request,
     { params }: { params: { id: string } }
 ) {
-    const data = await request.json();
+    let status = 500;
+    let subscription = null;
 
-    data.updatedAt = new Date();
+    try {
+        const data = await request.json();
+        subscription = await subscriptionService.update(parseInt(params.id), data);
+        status = subscription ? 200 : 400;
+    } catch (error) {
+        return NextResponse.json({ error: 'Could not process request' + error }, { status: 500 });
+    }
 
-    const subscription = await prisma.subscription.update({
-        where: { id: parseInt(params.id) },
-        data
-    });
-    return NextResponse.json(subscription);
+    return NextResponse.json(subscription, { status });
 }
 
 export async function DELETE(
     request: Request,
     { params }: { params: { id: string } }
 ) {
-    await prisma.subscription.delete({
-        where: { id: parseInt(params.id) }
-    });
-    return NextResponse.json({ success: true });
+    let status = 500;
+
+    try {
+        await subscriptionService.delete(parseInt(params.id));
+        status = 204;
+    } catch (error) {
+        return NextResponse.json({ error: 'Could not process request' + error }, { status: 500 });
+    }
+
+    return NextResponse.json(null, { status });
 }

@@ -1,16 +1,32 @@
-// app/api/subscriptions/route.ts
 import { NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';
+import { subscriptionService } from '@/services/subscription.service';
 
-export async function GET() {
-    const subscriptions = await prisma.subscription.findMany({
-        orderBy: { createdAt: 'desc' }
-    });
-    return NextResponse.json(subscriptions);
+export async function GET(request: Request) {
+    let status = 500;
+    let subscriptions = [];
+
+    try {
+        subscriptions = await subscriptionService.getAll();
+    } catch (error) {
+        return NextResponse.json({ error: 'Could not process request' + error }, { status: 500 });
+    }
+
+    status = subscriptions.length > 0 ? 200 : 204;
+
+    return NextResponse.json(subscriptions, { status });
 }
 
 export async function POST(request: Request) {
-    const data = await request.json();
-    const subscription = await prisma.subscription.create({ data });
-    return NextResponse.json(subscription, { status: 201 });
+    let status = 500;
+    let subscription = null;
+
+    try {
+        const data = await request.json();
+        subscription = await subscriptionService.create(data);
+        status = subscription ? 201 : 400;
+    } catch (error) {
+        return NextResponse.json({ error: 'Could not process request' + error }, { status: 500 });
+    }
+
+    return NextResponse.json(subscription, { status });
 }

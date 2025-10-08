@@ -1,6 +1,6 @@
 import { Dashboard } from "@/types/dashboard";
 
-class DashboardService {
+class DashboardApi {
     public get default(): Dashboard {
         return {
             monthly: 0,
@@ -18,4 +18,4 @@ class DashboardService {
     };
 }
 
-export const dashboardService = new DashboardService();
+export const dashboardApi = new DashboardApi();

@@ -11,17 +11,17 @@ import {
   PowerIcon,
 } from "lucide-react";
 import { Subscription } from "@/types/subscription";
-import { subscriptionService } from "@/services/subscription";
-import SubscriptionAddForm from "@/components/subscription-add-form";
+import { subscriptionApi } from "@/api/subscription.api";
+import SubscriptionAddForm from "@/components/forms/subscription-add";
 import Link from "next/link";
-import SubscriptionList from "@/components/subscription-list";
-import { dashboardService } from "@/services/dashboard";
+import SubscriptionList from "@/components/lists/subscription";
+import { dashboardApi } from "@/api/dashboard.api";
 import { Dashboard } from "@/types/dashboard";
 
 export default function Page() {
   const [subscriptions, setSubscriptions] = useState<Subscription[]>([]);
   const [dashboard, setDashboard] = useState<Dashboard>(
-    dashboardService.default
+    dashboardApi.default
   );
 
   useEffect(() => {
@@ -29,9 +29,9 @@ export default function Page() {
   }, []);
 
   const reloadData = async () => {
-    const subData = await subscriptionService.getAll();
+    const subData = await subscriptionApi.getAll();
     setSubscriptions(subData);
-    const dashData = await dashboardService.get();
+    const dashData = await dashboardApi.get();
     setDashboard(dashData);
   };
 

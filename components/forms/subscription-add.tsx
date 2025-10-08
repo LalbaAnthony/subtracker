@@ -12,22 +12,22 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Plus } from "lucide-react";
-import { subscriptionService } from "@/services/subscription";
-import { types } from "@/services/type";
-import { frequencies } from "@/services/frequency";
-import { payments } from "@/services/payments";
+import { subscriptionApi } from "@/api/subscription.api";
+import { types } from "@/api/type.api";
+import { frequencies } from "@/api/frequency.api";
+import { payments } from "@/api/payments.api";
 
 export default function SubscriptionAddForm({
   asksReload,
 }: {
   asksReload: () => void;
 }) {
-  const [form, setForm] = useState(subscriptionService.default);
+  const [form, setForm] = useState(subscriptionApi.default);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    await subscriptionService.create(form);
-    setForm(subscriptionService.default);
+    await subscriptionApi.create(form);
+    setForm(subscriptionApi.default);
     asksReload();
   };
 
