@@ -11,9 +11,9 @@ import { Button } from "@/components/ui/button";
 import { Trash2, Pen } from "lucide-react";
 import { Subscription } from "@/types/subscription";
 import { subscriptionApi } from "@/api/subscription.api";
-import { types } from "@/api/type.api";
-import { frequencies } from "@/api/frequency.api";
-import { payments } from "@/api/payments.api";
+// import { types } from "@/api/type.api";
+// import { frequencies } from "@/api/frequency.api";
+// import { payments } from "@/api/payments.api";
 
 export default function SubscriptionList({
   subscriptions,
@@ -39,14 +39,14 @@ export default function SubscriptionList({
               <th className="px-4 py-3 text-left text-sm font-medium">
                 Catégorie
               </th>
-              <th className="px-4 py-3 text-left text-sm font-medium">Type</th>
-              <th className="px-4 py-3 text-left text-sm font-medium">
+              {/* <th className="px-4 py-3 text-left text-sm font-medium">Type</th> */}
+              {/* <th className="px-4 py-3 text-left text-sm font-medium">
                 Paiment
-              </th>
+              </th> */}
               <th className="px-4 py-3 text-left text-sm font-medium">Prix</th>
-              <th className="px-4 py-3 text-left text-sm font-medium">
+              {/* <th className="px-4 py-3 text-left text-sm font-medium">
                 Fréquence
-              </th>
+              </th> */}
               <th className="px-4 py-3 text-left text-sm font-medium">
                 Date
               </th>
@@ -60,7 +60,7 @@ export default function SubscriptionList({
               <tr key={sub.id} className="hover:bg-muted/50">
                 <td className="px-4 py-3 font-medium">{sub.name}</td>
                 <td className="px-4 py-3">{sub.category || "-"}</td>
-                <td className="px-4 py-3">
+                {/* <td className="px-4 py-3">
                   <span
                     className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
                       types[sub.type].class
@@ -68,8 +68,8 @@ export default function SubscriptionList({
                   >
                     {types[sub.type].name}
                   </span>
-                </td>
-                <td className="px-4 py-3">
+                </td> */}
+                {/* <td className="px-4 py-3">
                   <span
                     className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
                       payments[sub.payment].class
@@ -77,9 +77,9 @@ export default function SubscriptionList({
                   >
                     {payments[sub.payment].name}
                   </span>
-                </td>
+                </td> */}
                 <td className="px-4 py-3">{sub.price} €</td>
-                <td className="px-4 py-3">
+                {/* <td className="px-4 py-3">
                   <span
                     className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
                       frequencies[sub.frequency].class
@@ -87,7 +87,7 @@ export default function SubscriptionList({
                   >
                     {frequencies[sub.frequency].name}
                   </span>
-                </td>
+                </td> */}
                 <td className="px-4 py-3">
                   {new Date(sub.nextBilling).toLocaleDateString("fr-FR")}
                 </td>

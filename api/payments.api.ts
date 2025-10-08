@@ -1,7 +1,12 @@
 import { Payment } from "@/types/payment";
 
-export const payments: Record<string, Payment> = {
-    card: { name: "Carte Bancaire", class: "bg-yellow-100 text-yellow-800" },
-    paypal: { name: "PayPal", class: "bg-blue-100 text-blue-800" },
-    transfer: { name: "Virement Bancaire", class: "bg-purple-100 text-purple-800" },
-};
+class PaymentApi {
+    public async getAll(): Promise<Payment[]> {
+        const res = await fetch("/api/payments");
+        const data = await res.json();
+
+        return data;
+    };
+}
+
+export const paymentApi = new PaymentApi();

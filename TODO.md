@@ -4,7 +4,8 @@
 - [x] Make the list a component
 - [x] Page individuelle (/subs/[id])
 - [x] Replace the dashboard values by a dedicated enpoint (to avoid fecthing subs multiple times)
-- [ ] Déplacer le statique de type, frequence, type dans l'API
+- [ ] Déplacer le statique de type, frequence, type dans services
+- [ ] Faire des tableau pour statiques
 - [ ] Make the dashboard reload when a new item is added from the dashboard
 - [ ] Add loaders
 - [ ] Liste avec pagination
