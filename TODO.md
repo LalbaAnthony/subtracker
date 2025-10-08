@@ -3,8 +3,9 @@
 - [x] Dahsboard
 - [x] Make the list a component
 - [x] Page individuelle (/subs/[id])
+- [x] Replace the dashboard values by a dedicated enpoint (to avoid fecthing subs multiple times)
+- [ ] Refaire arbo
 - [ ] Make the dashboard reload when a new item is added from the dashboard
-- [ ] Replace the dashboard values by a dedicated enpoint (to avoid fecthing subs multiple times)
 - [ ] Add loaders
 - [ ] Liste avec pagination
 - [ ] Limit the dashboard list to the next 5 payments

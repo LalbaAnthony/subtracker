@@ -15,34 +15,25 @@ import { subscriptionService } from "@/services/subscription";
 import SubscriptionAddForm from "@/components/subscription-add-form";
 import Link from "next/link";
 import SubscriptionList from "@/components/subscription-list";
+import { dashboardService } from "@/services/dashboard";
+import { Dashboard } from "@/types/dashboard";
 
 export default function Page() {
   const [subscriptions, setSubscriptions] = useState<Subscription[]>([]);
+  const [dashboard, setDashboard] = useState<Dashboard>(
+    dashboardService.default
+  );
 
   useEffect(() => {
     reloadData();
   }, []);
 
   const reloadData = async () => {
-    const data = await subscriptionService.getAll();
-    setSubscriptions(data);
+    const subData = await subscriptionService.getAll();
+    setSubscriptions(subData);
+    const dashData = await dashboardService.get();
+    setDashboard(dashData);
   };
-
-  const totalMonthly = subscriptions
-    .filter((s) => s.active)
-    .reduce((acc, s) => {
-      const monthly =
-        s.frequency === "biennial"
-          ? s.price / 24
-          : s.frequency === "yearly"
-          ? s.price / 12
-          : s.frequency === "monthly"
-          ? s.price
-          : s.frequency === "weekly"
-          ? s.price * 4.33
-          : s.price;
-      return acc + monthly;
-    }, 0);
 
   return (
     <div>
@@ -53,9 +44,7 @@ export default function Page() {
             <TrendingUp className="w-4 h-4 text-blue-500" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">
-              {totalMonthly.toFixed(2)} €
-            </div>
+            <div className="text-2xl font-bold">{dashboard.monthly} €</div>
           </CardContent>
         </Card>
 
@@ -65,9 +54,7 @@ export default function Page() {
             <Calendar className="w-4 h-4 text-purple-500" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">
-              {(totalMonthly * 12).toFixed(2)} €
-            </div>
+            <div className="text-2xl font-bold">{dashboard.yearly} €</div>
           </CardContent>
         </Card>
 
@@ -79,9 +66,7 @@ export default function Page() {
             <PowerIcon className="w-4 h-4 text-green-500" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">
-              {subscriptions.filter((s) => s.active).length}
-            </div>
+            <div className="text-2xl font-bold">{dashboard.actives}</div>
           </CardContent>
         </Card>
 
@@ -93,9 +78,7 @@ export default function Page() {
             <PowerOff className="w-4 h-4 text-red-500" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">
-              {subscriptions.filter((s) => !s.active).length}
-            </div>
+            <div className="text-2xl font-bold">{dashboard.inactives}</div>
           </CardContent>
         </Card>
       </div>
@@ -120,9 +103,7 @@ export default function Page() {
             </Link>
           </CardHeader>
           <CardContent>
-            <SubscriptionList
-              subscriptions={subscriptions}
-            />
+            <SubscriptionList subscriptions={subscriptions} />
           </CardContent>
         </Card>
       </div>

@@ -1,7 +1,7 @@
-import { Subscription, SubscriptionCreation } from "@/types/Subscription";
+import { Subscription, SubscriptionCreation } from "@/types/subscription";
 
 class SubscriptionService {
-    public default(): SubscriptionCreation {
+    public get default(): SubscriptionCreation {
         return {
             name: "",
             price: 0,

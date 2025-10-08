@@ -22,12 +22,12 @@ export default function SubscriptionAddForm({
 }: {
   asksReload: () => void;
 }) {
-  const [form, setForm] = useState(subscriptionService.default());
+  const [form, setForm] = useState(subscriptionService.default);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     await subscriptionService.create(form);
-    setForm(subscriptionService.default());
+    setForm(subscriptionService.default);
     asksReload();
   };
 
