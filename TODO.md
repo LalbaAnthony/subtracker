@@ -17,6 +17,7 @@ Must:
 - [x] Add toggle button on list
 - [-] Page de modification
 - [ ] Authentification basique
+- [ ] Page "Mon profil"
 - [ ] Host avec vercel (passer BDD en PG avant ?)
 - [ ] Faire readme complet
 - [ ] Check consigne un derniere fois avant de soumettre
