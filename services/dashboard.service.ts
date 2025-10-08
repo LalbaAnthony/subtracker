@@ -6,8 +6,8 @@ import { frequencyService } from "./frequency.service";
 class DashboardService {
     private async computeMonthly(subscriptions: Subscription[]): Promise<number> {
         subscriptions = subscriptions
-            .filter(s => s.active);
-            .filter(s => s.price > 0)
+            .filter(s => s.active)
+            .filter(s => s.price > 0);
 
         const frequencies = await frequencyService.getAll();
 
