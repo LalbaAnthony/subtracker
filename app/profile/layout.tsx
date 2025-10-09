@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import "../globals.css";
-import Navbar from "@/components/layout/navbar";
 import Link from "next/link";
 import Image from "next/image";
+import ProfileNavbar from "@/components/profile/profile-navbar";
 
 export const metadata: Metadata = {
   title: "SubTracker",
@@ -17,7 +17,7 @@ export default function RootLayout({
   return (
     <div className="container mx-auto">
       <nav className="mb-8 flex justify-between items-center">
-        <Navbar />
+        <ProfileNavbar />
       </nav>
 
       <div>{children}</div>
