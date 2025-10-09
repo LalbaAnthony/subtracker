@@ -12,9 +12,15 @@ export async function middleware(request: NextRequest) {
         return NextResponse.redirect(new URL("/profile", request.url));
     }
 
+    if (sessionToken && request.nextUrl.pathname === "/") {
+        return NextResponse.redirect(new URL("/dashboard", request.url));
+    }
+
     return NextResponse.next();
 }
 
 export const config = {
-    matcher: ["/profile/:path*", "/login"],
+    matcher: [
+        "/((?!api|_next/static|_next/image|favicon.ico).*)",
+    ],
 };

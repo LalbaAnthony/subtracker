@@ -12,7 +12,7 @@ export const items: {
 }[] = [
   {
     title: "Dashboard",
-    href: "/",
+    href: "/dashboard",
     description: "",
   },
   {
