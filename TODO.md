@@ -23,7 +23,8 @@ Must:
 - [x] Client Components (minimum 3) avec 'use client' pour interactivité
 - [-] Server Components (minimum 3) pour récupérer les data
 - [-] Server Actions avec use server
-- [ ] Protection des routes partiellernent (middleware ou vérification session)
+- [x] Protection des routes partiellernent (middleware ou vérification session)
+- [ ] Faire npm run lint (le conf avant pour qu'il tap que sur le code source)
 - [ ] CRUD complet (Create, Read, Update, Delete)
 - [ ] Check consigne un derniere fois avant de soumettre
 - [ ] Faire README complet (tester le quick start)

@@ -17,6 +17,7 @@ model User {
   updatedAt     DateTime  @updatedAt
   sessions      Session[]
   accounts      Account[]
+  subscriptions Subscription[]
 }
 
 model Session {
@@ -75,6 +76,10 @@ model Subscription {
   nextBilling DateTime
   category    String?
   active      Boolean  @default(true)
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+
+  @@index([userId])
 }

@@ -1,6 +1,5 @@
 import { Subscription, SubscriptionCreation } from "@/types/subscription";
 import { del, get, post } from "@/utils/api";
-import { paginate } from "@/utils/pagination";
 
 class SubscriptionApi {
     public get default(): SubscriptionCreation {
@@ -26,7 +25,7 @@ class SubscriptionApi {
 
 
     public async delete(id: number): Promise<void> {
-        await del(`/api/subscriptions/${id}`);
+        await del(`/subscriptions/${id}`);
     };
 
     public async toggle(id: number): Promise<void> {
@@ -34,9 +33,8 @@ class SubscriptionApi {
     }
 
     public async create(subscription: SubscriptionCreation): Promise<Subscription> {
-        const result = await post<Subscription>("/subscriptions/create", subscription);
+        const result = await post<Subscription>("/subscriptions", subscription);
         return result.data.data as Subscription;
-
     };
 }
 

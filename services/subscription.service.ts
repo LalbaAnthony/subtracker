@@ -3,25 +3,27 @@ import { Pagination } from '@/types/pagination';
 import { Subscription, SubscriptionCreation } from '@/types/subscription';
 
 class SubscriptionService {
-    public async count(options: { search?: string }): Promise<number> {
+    public async count(options: { userId: string, search?: string }): Promise<number> {
         const { search } = options;
 
         const count = await prisma.subscription.count({
             where: {
                 name: search ? { contains: search } : undefined,
+                userId: options.userId,
             },
         });
 
         return count;
     }
 
-    public async getAll(options: { search?: string; pagination: Pagination }): Promise<Subscription[]> {
+    public async getAll(options: { userId: string, search?: string; pagination: Pagination }): Promise<Subscription[]> {
         const { search, pagination } = options;
         const { offset, limit } = pagination
 
         const subscriptions = await prisma.subscription.findMany({
             where: {
                 name: search ? { contains: search } : undefined,
+                userId: options.userId,
             },
             skip: offset,
             take: limit,
@@ -31,24 +33,33 @@ class SubscriptionService {
         return subscriptions;
     };
 
-    public async delete(id: number): Promise<void> {
-        await prisma.subscription.delete({ where: { id } });
+    public async delete(id: number, options: { userId: string }): Promise<void> {
+        await prisma.subscription.delete({
+            where: {
+                id,
+                userId: options.userId,
+            }
+        });
     };
 
-    public async create(subscription: SubscriptionCreation): Promise<Subscription> {
+    public async create(subscription: SubscriptionCreation, options: { userId: string }): Promise<Subscription> {
         const newSubscription = await prisma.subscription.create({
             data: {
                 ...subscription,
                 active: true,
-            } as SubscriptionCreation,
+                userId: options.userId,
+            } as Subscription,
         });
 
         return newSubscription;
     };
 
-    public async update(id: number, subscription: Partial<Subscription>): Promise<Subscription> {
+    public async update(id: number, subscription: Partial<Subscription>, options: { userId: string }): Promise<Subscription> {
         const updatedSubscription = await prisma.subscription.update({
-            where: { id },
+            where: {
+                id,
+                userId: options.userId
+            },
             data: {
                 ...subscription,
                 updatedAt: new Date(),
@@ -58,12 +69,15 @@ class SubscriptionService {
         return updatedSubscription;
     };
 
-    public async toggle(id: number): Promise<void> {
+    public async toggle(id: number, options: { userId: string }): Promise<void> {
         const subscription = await prisma.subscription.findUnique({ where: { id } });
         if (!subscription) throw new Error('Subscription not found');
 
         await prisma.subscription.update({
-            where: { id },
+            where: {
+                id,
+                userId: options.userId
+            },
             data: { active: !subscription.active, updatedAt: new Date() },
         });
     }

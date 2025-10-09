@@ -44,4 +44,3 @@ next-env.d.ts
 
 # SQLite database files
 /prisma/*.db
-/prisma/migrations
