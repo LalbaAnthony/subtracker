@@ -1,9 +1,15 @@
+"use client";
+
 import {
   NavigationMenu,
   NavigationMenuLink,
   NavigationMenuList,
 } from "@/components/ui/navigation-menu";
 import Link from "next/link";
+import { signOut } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import { LogOut } from "lucide-react";
 
 export const items: {
   title: string;
@@ -12,12 +18,19 @@ export const items: {
 }[] = [
   {
     title: "Mon compte",
-    href: "/",
+    href: "/profile",
     description: "",
   },
 ];
 
 export default function ProfileNavbar() {
+  const router = useRouter();
+
+  const handleLogout = async () => {
+    await signOut();
+    router.push("/login");
+  };
+
   return (
     <nav>
       <NavigationMenu viewport={false}>
@@ -36,6 +49,14 @@ export default function ProfileNavbar() {
               </NavigationMenuLink>
             </li>
           ))}
+          <Button
+            onClick={handleLogout}
+            variant="destructive"
+            className=""
+          >
+            <LogOut className="mr-2 h-4 w-4" />
+            Se déconnecter
+          </Button>
         </NavigationMenuList>
       </NavigationMenu>
     </nav>

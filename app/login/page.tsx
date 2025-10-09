@@ -33,7 +33,7 @@ export default function LoginPage() {
           password,
         });
       }
-      router.push("/profile");
+      router.push("/dashboard");
     } catch (err: any) {
       setError(err.message || "Authentication failed");
     }
@@ -48,7 +48,9 @@ export default function LoginPage() {
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <Label htmlFor="email">Email</Label>
+              <Label htmlFor="email" className="mb-2">
+                Email
+              </Label>
               <Input
                 id="email"
                 type="email"
@@ -60,7 +62,9 @@ export default function LoginPage() {
 
             {isSignUp && (
               <div>
-                <Label htmlFor="name">Name</Label>
+                <Label htmlFor="name" className="mb-2">
+                  Nom
+                </Label>
                 <Input
                   id="name"
                   type="text"
@@ -72,7 +76,9 @@ export default function LoginPage() {
             )}
 
             <div>
-              <Label htmlFor="password">Password</Label>
+              <Label htmlFor="password" className="mb-2">
+                Mot de passe
+              </Label>
               <Input
                 id="password"
                 type="password"
@@ -85,19 +91,22 @@ export default function LoginPage() {
             {error && <p className="text-sm text-red-500">{error}</p>}
 
             <Button type="submit" className="w-full">
-              {isSignUp ? "Sign Up" : "Login"}
+              {isSignUp ? "Créer un compte" : "Se connecter"}
             </Button>
           </form>
 
-          <Button
-            variant="link"
-            className="mt-4 w-full"
-            onClick={() => setIsSignUp(!isSignUp)}
-          >
-            {isSignUp
-              ? "Already have an account? Login"
-              : "Need an account? Sign Up"}
-          </Button>
+          <div className="mt-4 w-full flex justify-center items-center">
+            <div>
+              {isSignUp ? "Déjà un compte ?" : "Pas encore de compte ?"}{" "}
+            </div>
+            <Button
+              variant="link"
+              className="ml-2 p-0"
+              onClick={() => setIsSignUp(!isSignUp)}
+            >
+              {isSignUp ? "Se connecter" : "Créer un compte"}
+            </Button>
+          </div>
         </CardContent>
       </Card>
     </div>

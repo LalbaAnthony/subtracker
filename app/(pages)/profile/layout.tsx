@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import "../../globals.css";
-import Link from "next/link";
-import Image from "next/image";
 import ProfileNavbar from "@/components/profile/profile-navbar";
 
 export const metadata: Metadata = {
@@ -15,10 +13,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="container mx-auto">
-      <nav className="mb-8 flex justify-between items-center">
+    <div className="">
+      <div className="mb-4">
         <ProfileNavbar />
-      </nav>
+      </div>
 
       <div>{children}</div>
     </div>
