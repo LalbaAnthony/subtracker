@@ -20,9 +20,7 @@ class SubscriptionApi {
             paginattion: JSON.stringify(options.pagination)
         });
         return result.data.data as Subscription[];
-
     }
-
 
     public async delete(id: number): Promise<void> {
         await del(`/subscriptions/${id}`);
