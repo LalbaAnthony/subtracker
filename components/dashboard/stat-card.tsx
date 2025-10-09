@@ -9,7 +9,7 @@ interface Props {
   loading?: boolean;
 }
 
-export default function DashboardStat({
+export default function StatCard({
   title,
   value,
   iconNode,

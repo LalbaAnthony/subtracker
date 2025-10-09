@@ -13,9 +13,9 @@ import {
 } from "lucide-react";
 import { Subscription } from "@/types/subscription";
 import { subscriptionApi } from "@/api/subscription.api";
-import SubscriptionAddForm from "@/components/forms/subscription-add";
+import SubscriptionAddForm from "@/components/subscriptions/subscription-addform";
 import Link from "next/link";
-import SubscriptionList from "@/components/lists/subscription";
+import SubscriptionList from "@/components/subscriptions/subscription-list";
 import { dashboardApi } from "@/api/dashboard.api";
 import { Dashboard } from "@/types/dashboard";
 import { typeApi } from "@/api/type.api";
@@ -24,7 +24,7 @@ import { paymentApi } from "@/api/payments.api";
 import { Payment } from "@/types/payment";
 import { Frequency } from "@/types/frequency";
 import { Type } from "@/types/type";
-import DashboardStat from "@/components/cards/dashboard-stat";
+import StatCard from "@/components/dashboard/stat-card";
 
 export default function Page() {
   const [loading, setLoading] = useState<boolean>(false);

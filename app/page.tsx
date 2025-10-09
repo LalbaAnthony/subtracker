@@ -13,9 +13,9 @@ import {
 } from "lucide-react";
 import { Subscription } from "@/types/subscription";
 import { subscriptionApi } from "@/api/subscription.api";
-import SubscriptionAddForm from "@/components/forms/subscription-add";
+import SubscriptionAddForm from "@/components/subscriptions/subscription-addform";
 import Link from "next/link";
-import SubscriptionList from "@/components/lists/subscription";
+import SubscriptionList from "@/components/subscriptions/subscription-list";
 import { dashboardApi } from "@/api/dashboard.api";
 import { Dashboard } from "@/types/dashboard";
 import { typeApi } from "@/api/type.api";
@@ -24,7 +24,7 @@ import { paymentApi } from "@/api/payments.api";
 import { Payment } from "@/types/payment";
 import { Frequency } from "@/types/frequency";
 import { Type } from "@/types/type";
-import DashboardStat from "@/components/cards/dashboard-stat";
+import StatCard from "@/components/dashboard/stat-card";
 
 export default function Page() {
   const [loading, setLoading] = useState<boolean>(false);
@@ -70,7 +70,7 @@ export default function Page() {
   return (
     <div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6 mb-8">
-        <DashboardStat
+        <StatCard
           title="Prochaine date"
           value={
             dashboard.nextBilling
@@ -84,28 +84,28 @@ export default function Page() {
           iconClass="text-blue-500"
           loading={loading}
           />
-        <DashboardStat
+        <StatCard
           title="Total Mensuel"
           value={`${dashboard.monthly} €`}
           iconNode={<Calendar className="w-4 h-4" />}
           iconClass="text-purple-500"
           loading={loading}
           />
-        <DashboardStat
+        <StatCard
           title="Total Annuel"
           value={`${dashboard.yearly} €`}
           iconNode={<CalendarRange className="w-4 h-4" />}
           iconClass="text-orange-500"
           loading={loading}
         />
-        <DashboardStat
+        <StatCard
           title="Actifs"
           value={dashboard.actives}
           iconNode={<Check className="w-4 h-4" />}
           iconClass="text-green-500"
           loading={loading}
         />
-        <DashboardStat
+        <StatCard
           title="Inactifs"
           value={dashboard.inactives}
           iconNode={<X className="w-4 h-4" />}

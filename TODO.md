@@ -23,7 +23,7 @@ Must:
 - [ ] Layouts (root layout + 1 layout imbriqué minimum)
 - [ ] Pages spéciales (loading.tsx, error.tsx, not-found.tsx)
 - [ ] CRUD complet (Create, Read, Update, Delete)
-- [ ] Server Actions avec 'use server
+- [ ] Server Actions avec use server
 - [ ] Protection des routes partiellernent (middleware ou vérification session)
 - [ ] Faire readme complet
 - [ ] Check consigne un derniere fois avant de soumettre
