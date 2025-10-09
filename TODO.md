@@ -18,15 +18,15 @@ Must:
 - [x] Page de liste sans pagination
 - [x] Page "Mon profil"
 - [x] Authentification (NextAuth ou BetterAuth) avec login/logout
-- [x] Client Components (minimum 3) avec 'use client' pour interactivité
 - [x] Layouts (root layout + 1 layout imbriqué minimum)
 - [x] Pages spéciales (loading.tsx, error.tsx, not-found.tsx)
-- [ ] Server Components (minimum 3) pour récupérer les data
-- [ ] CRUD complet (Create, Read, Update, Delete)
-- [ ] Server Actions avec use server
+- [x] Client Components (minimum 3) avec 'use client' pour interactivité
+- [-] Server Components (minimum 3) pour récupérer les data
+- [-] Server Actions avec use server
 - [ ] Protection des routes partiellernent (middleware ou vérification session)
-- [ ] Faire readme complet
+- [ ] CRUD complet (Create, Read, Update, Delete)
 - [ ] Check consigne un derniere fois avant de soumettre
+- [ ] Faire README complet (tester le quick start)
 - [ ] Page de details/modif
 
 Could:

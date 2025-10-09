@@ -14,9 +14,18 @@ export default function RootLayout({
         <header className="mb-8 flex justify-between items-center">
           <Link href="/dashboard">
             <Image
-              src="/logo.png"
-              height={75}
-              width={200}
+              className="block sm:hidden"
+              src="/images/logo-mini.png"
+              height={35}
+              width={35}
+              priority={true}
+              alt="SubTracker Logo"
+            />
+            <Image
+              className="hidden sm:block"
+              src="/images/logo.png"
+              height={50}
+              width={150}
               priority={true}
               alt="SubTracker Logo"
             />
