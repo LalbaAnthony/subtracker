@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/layout/navbar";
 import Link from "next/link";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "SubTracker",
@@ -20,9 +21,14 @@ export default function RootLayout({
           <div className="container mx-auto px-4 py-8 max-w-7xl">
             <header className="mb-8 flex justify-between items-center">
               <Link href="/">
-                <h1 className="text-3xl font-bold mb-2">
-                  {String(metadata.title)}
-                </h1>
+                {/* Auto width */}
+                <Image
+                  src="/logo.png"
+                  height={75}
+                  width={200}
+                  priority={true}	
+                  alt="SubTracker Logo"
+                />
               </Link>
               <Navbar />
             </header>

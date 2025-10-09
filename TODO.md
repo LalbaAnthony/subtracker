@@ -13,14 +13,21 @@ Must:
 - [x] Server Components vs Client Components
 - [x] Limit the dashboard list to the next 5 payments
 - [x] Make API utils to avoid repeating code in *.api.ts
-- [ ] Page de liste avec pagination
 - [x] Add toggle button on list
-- [-] Page de modification
-- [ ] Authentification basique
+- [x] Images optimisées avec le composant <Image> de Next.js
+- [x] Page de liste sans pagination
+- [ ] Authentification (NextAuth ou BetterAuth) avec login/logout
 - [ ] Page "Mon profil"
-- [ ] Host avec vercel (passer BDD en PG avant ?)
+- [ ] Server Components (minimum 3) pour récupérer les data
+- [ ] Client Components (minimum 3) avec 'use client' pour interactivité
+- [ ] Layouts (root layout + 1 layout imbriqué minimum)
+- [ ] Pages spéciales (loading.tsx, error.tsx, not-found.tsx)
+- [ ] CRUD complet (Create, Read, Update, Delete)
+- [ ] Server Actions avec 'use server
+- [ ] Protection des routes partiellernent (middleware ou vérification session)
 - [ ] Faire readme complet
 - [ ] Check consigne un derniere fois avant de soumettre
+- [ ] Page de details/modif
 
 Could:
 - [ ] Make category a table etc
