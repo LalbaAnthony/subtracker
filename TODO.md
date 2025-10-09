@@ -16,12 +16,12 @@ Must:
 - [x] Add toggle button on list
 - [x] Images optimisées avec le composant <Image> de Next.js
 - [x] Page de liste sans pagination
-- [ ] Authentification (NextAuth ou BetterAuth) avec login/logout
-- [ ] Page "Mon profil"
+- [x] Page "Mon profil"
+- [x] Authentification (NextAuth ou BetterAuth) avec login/logout
+- [x] Client Components (minimum 3) avec 'use client' pour interactivité
+- [x] Layouts (root layout + 1 layout imbriqué minimum)
+- [x] Pages spéciales (loading.tsx, error.tsx, not-found.tsx)
 - [ ] Server Components (minimum 3) pour récupérer les data
-- [ ] Client Components (minimum 3) avec 'use client' pour interactivité
-- [ ] Layouts (root layout + 1 layout imbriqué minimum)
-- [ ] Pages spéciales (loading.tsx, error.tsx, not-found.tsx)
 - [ ] CRUD complet (Create, Read, Update, Delete)
 - [ ] Server Actions avec use server
 - [ ] Protection des routes partiellernent (middleware ou vérification session)

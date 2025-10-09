@@ -12,8 +12,7 @@ export default function RootLayout({
     <div className="min-h-screen bg-slate-50">
       <div className="container mx-auto px-4 py-8 max-w-7xl">
         <header className="mb-8 flex justify-between items-center">
-          <Link href="/">
-            {/* Auto width */}
+          <Link href="/dashboard">
             <Image
               src="/logo.png"
               height={75}

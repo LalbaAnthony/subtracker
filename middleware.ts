@@ -4,16 +4,20 @@ import type { NextRequest } from "next/server";
 export async function middleware(request: NextRequest) {
     const sessionToken = request.cookies.get("better-auth.session_token");
 
-    if (!sessionToken && request.nextUrl.pathname.startsWith("/profile")) {
+    // If no session token and not on login page, redirect to login
+    if (!sessionToken && request.nextUrl.pathname !== "/login") {
         return NextResponse.redirect(new URL("/login", request.url));
     }
 
-    if (sessionToken && request.nextUrl.pathname === "/login") {
-        return NextResponse.redirect(new URL("/profile", request.url));
-    }
+    // If session token, redirect away as appropriate
+    if (sessionToken) {
+        if (request.nextUrl.pathname === "/login") {
+            return NextResponse.redirect(new URL("/profile", request.url));
+        }
 
-    if (sessionToken && request.nextUrl.pathname === "/") {
-        return NextResponse.redirect(new URL("/dashboard", request.url));
+        if (request.nextUrl.pathname === "/") {
+            return NextResponse.redirect(new URL("/dashboard", request.url));
+        }
     }
 
     return NextResponse.next();
@@ -21,6 +25,6 @@ export async function middleware(request: NextRequest) {
 
 export const config = {
     matcher: [
-        "/((?!api|_next/static|_next/image|favicon.ico).*)",
+        "/((?!api|_next/static|_next/image|favicon.ico).*)", // Apply to all paths except for /api, /_next/static, /_next/image, and /favicon.ico
     ],
 };
