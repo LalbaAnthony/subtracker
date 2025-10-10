@@ -9,10 +9,11 @@
 cp .env.example .env
 
 # Setup prisma
+prisma generate
 npx prisma migrate dev --name init
 
 # Install dependencies and run the development server
-npi i ; npm run dev
+npm i ; npm run dev
 ```
 
 ## 🛠️ - Tech Stack
