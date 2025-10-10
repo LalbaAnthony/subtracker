@@ -139,7 +139,7 @@ export default function SubscriptionList({
                         size="icon"
                         onClick={() => handleToggle(sub.id)}
                       >
-                        <Power className={`w-4 h-4 ${!sub.active ? "text-gray-500" : ""}`} />
+                        <Power className={`w-4 h-4 ${!sub.active ? "text-green-500" : "text-gray-500"}`} />
                       </Button>
                       <Button
                         variant="ghost"
@@ -186,7 +186,7 @@ export default function SubscriptionList({
                         size="icon"
                         onClick={() => handleToggle(sub.id)}
                       >
-                        <Power className="w-4 h-4 text-primary" />
+                        <Power className={`w-4 h-4 ${!sub.active ? "text-green-500" : "text-gray-500"}`} />
                       </Button>
                       <Button
                         variant="ghost"

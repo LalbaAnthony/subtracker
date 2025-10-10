@@ -1,5 +1,7 @@
 # 🧮 - SubTrack
 
+<img src="https://raw.githubusercontent.com/LalbaAnthony/subtrack/main/github/assets/screenshots/dashboard.png" alt="Dashboard Screenshot" width="600"/>
+
 ## 🚀 - Quick Start
 
 ```bash
@@ -12,6 +14,14 @@ npx prisma migrate dev --name init
 # Install dependencies and run the development server
 npi i ; npm run dev
 ```
+
+## 🛠️ - Tech Stack
+
+- **Next.js**: Framework for building server-rendered React applications.
+- **TypeScript**: Superset of JavaScript that adds static typing.
+- **Prisma**: ORM for database access and management.
+- **SQLite**: Lightweight, file-based relational database.
+- **Tailwind CSS**: Utility-first CSS framework for styling.
 
 ## 🏗️ - Structure
 
@@ -54,3 +64,22 @@ npi i ; npm run dev
 ├── package.json             # Project dependencies and scripts
 └── tsconfig.json            # TypeScript configuration
 ```
+
+## 📦 - .env
+
+Update the environment variables as needed.
+
+```env
+DATABASE_URL="file:./database.db"           # SQLite database file (used by Prisma)           
+BETTER_AUTH_SECRET=please_change_me         # Secret key for authentication
+NEXT_PUBLIC_APP_URL=http://localhost:3000   # Public URL of the application
+```
+
+## 📝 - Features
+
+- **Subscription Management**: Create, read, update, and delete subscriptions.
+- **Dashboard**: View upcoming payments and subscription summaries.
+- **Responsive Design**: Mobile-friendly layout using Tailwind CSS.
+- **Server Components**: Efficient data fetching with Next.js Server Components.
+- **Server Actions**: Handle form submissions and actions on the server side.
+- **CRUD Operations**: Full CRUD functionality for managing subscriptions.

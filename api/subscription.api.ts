@@ -17,7 +17,7 @@ class SubscriptionApi {
     public async getAll(options: { search?: string; pagination: { page: number; limit: number } }): Promise<Subscription[]> {
         const result = await get<Subscription[]>("/subscriptions", {
             search: options.search,
-            paginattion: JSON.stringify(options.pagination)
+            pagination: JSON.stringify(options.pagination)
         });
         return result.data.data as Subscription[];
     }

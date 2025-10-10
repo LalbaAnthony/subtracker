@@ -1,33 +1,4 @@
 Must:
-- [x] Layout
-- [x] Formulaire d'ajout : Créer un nouvel item
-- [x] Dahsboard
-- [x] Make the list a component
-- [x] Page individuelle (/subs/[id])
-- [x] Replace the dashboard values by a dedicated enpoint (to avoid fecthing subs multiple times)
-- [x] Déplacer le statique de type, frequence, type dans services
-- [x] Faire des tableau pour statiques
-- [x] Remettre les statiques dans list
-- [x] Make the dashboard reload when a new item is added from the dashboard
-- [x] Add loaders
-- [x] Server Components vs Client Components
-- [x] Limit the dashboard list to the next 5 payments
-- [x] Make API utils to avoid repeating code in *.api.ts
-- [x] Add toggle button on list
-- [x] Images optimisées avec le composant <Image> de Next.js
-- [x] Page de liste sans pagination
-- [x] Page "Mon profil"
-- [x] Authentification (NextAuth ou BetterAuth) avec login/logout
-- [x] Layouts (root layout + 1 layout imbriqué minimum)
-- [x] Pages spéciales (loading.tsx, error.tsx, not-found.tsx)
-- [x] Client Components (minimum 3) avec 'use client' pour interactivité
-- [-] Server Components (minimum 3) pour récupérer les data
-- [-] Server Actions avec use server
-- [x] Protection des routes partiellernent (middleware ou vérification session)
-- [ ] Faire npm run lint (le conf avant pour qu'il tap que sur le code source)
-- [ ] CRUD complet (Create, Read, Update, Delete)
-- [ ] Check consigne un derniere fois avant de soumettre
-- [ ] Faire README complet (tester le quick start)
 - [ ] Page de details/modif
 
 Could:

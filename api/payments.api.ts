@@ -2,7 +2,7 @@ import { Payment } from "@/types/payment";
 import { get } from "@/utils/api";
 class PaymentApi {
     public async getAll(): Promise<Payment[]> {
-        const result = await get<Payment[]>("/frequencies");
+        const result = await get<Payment[]>("/payments");
         return result.data.data as Payment[];
     };
 }

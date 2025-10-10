@@ -36,7 +36,7 @@ export default function Page() {
 
   useEffect(() => {
     reloadData();
-  });
+  }, []);
 
   const reloadData = async () => {
     setLoading(true);
@@ -83,14 +83,14 @@ export default function Page() {
           iconNode={<TrendingUp className="w-4 h-4" />}
           iconClass="text-blue-500"
           loading={loading}
-          />
+        />
         <DashboardStatCard
           title="Total Mensuel"
           value={`${dashboard.monthly} €`}
           iconNode={<Calendar className="w-4 h-4" />}
           iconClass="text-purple-500"
           loading={loading}
-          />
+        />
         <DashboardStatCard
           title="Total Annuel"
           value={`${dashboard.yearly} €`}
@@ -115,7 +115,7 @@ export default function Page() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <Card className="lg:col-span-1">  
+        <Card className="lg:col-span-1">
           <CardHeader className="flex flex-row items-center justify-between">
             <CardTitle className="my-2">Ajouter</CardTitle>
           </CardHeader>

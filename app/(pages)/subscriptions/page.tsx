@@ -21,7 +21,7 @@ export default function Page() {
 
   useEffect(() => {
     reloadData();
-  });
+  }, []);
 
   const reloadData = async () => {
     setLoading(true);
