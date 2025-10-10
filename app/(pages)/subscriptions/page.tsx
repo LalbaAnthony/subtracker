@@ -2,29 +2,15 @@
 
 import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import {
-  Calendar,
-  TrendingUp,
-  SquareArrowOutUpRight,
-  X,
-  Check,
-  CalendarRange,
-} from "lucide-react";
 import { Subscription } from "@/types/subscription";
 import { subscriptionApi } from "@/api/subscription.api";
-import SubscriptionAddForm from "@/components/subscriptions/subscription-add-form";
-import Link from "next/link";
 import SubscriptionList from "@/components/subscriptions/subscription-list";
-import { dashboardApi } from "@/api/dashboard.api";
-import { Dashboard } from "@/types/dashboard";
 import { typeApi } from "@/api/type.api";
 import { frequencyApi } from "@/api/frequency.api";
 import { paymentApi } from "@/api/payments.api";
 import { Payment } from "@/types/payment";
 import { Frequency } from "@/types/frequency";
 import { Type } from "@/types/type";
-import DashboardStatCard from "@/components/dashboard/dashboard-stat-card";
 
 export default function Page() {
   const [loading, setLoading] = useState<boolean>(false);
@@ -35,7 +21,7 @@ export default function Page() {
 
   useEffect(() => {
     reloadData();
-  }, []);
+  });
 
   const reloadData = async () => {
     setLoading(true);

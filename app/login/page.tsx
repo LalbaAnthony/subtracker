@@ -34,8 +34,10 @@ export default function LoginPage() {
         });
       }
       router.push("/dashboard");
-    } catch (err: any) {
-      setError(err.message || "Authentication failed");
+    } catch {
+      setError(
+        "Échec de la connexion ou de l'inscription. Veuillez vérifier vos informations et réessayer."
+      );
     }
   };
 
