@@ -1,6 +1,6 @@
-# 🧮 - SubTrack
+# 🧮 - SubTracker
 
-<img src="https://raw.githubusercontent.com/LalbaAnthony/subtrack/main/github/assets/screenshots/dashboard.png" alt="Dashboard Screenshot" width="600"/>
+<img src="https://raw.githubusercontent.com/LalbaAnthony/subtracker/main/github/assets/screenshots/dashboard.png" alt="Dashboard Screenshot" width="600"/>
 
 ## 🚀 - Quick Start
 
